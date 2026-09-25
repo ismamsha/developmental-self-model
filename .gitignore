@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Experiment outputs (commit curated results under results/ instead)
+checkpoints*/
+results_v*/
+*.pt

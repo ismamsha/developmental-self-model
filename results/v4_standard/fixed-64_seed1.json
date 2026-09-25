@@ -1,0 +1,93 @@
+{
+  "accuracy": 61.551666259765625,
+  "chance": 25.0,
+  "cue_blind_life": 39.948333740234375,
+  "cue_blind_phase": 49.782501220703125,
+  "survival": 100.0,
+  "survival_fault": 100.0,
+  "reward": 69.63438415527344,
+  "average_units": 64.0,
+  "final_units": 64.0,
+  "grow_events": 0.0,
+  "prune_events": 0.0,
+  "phase_1_accuracy": 68.413330078125,
+  "phase_1_units": 64.0,
+  "phase_1_grow": 0.0,
+  "phase_2_accuracy": 61.62666702270508,
+  "phase_2_units": 64.0,
+  "phase_2_grow": 0.0,
+  "phase_3_accuracy": 58.926666259765625,
+  "phase_3_units": 64.0,
+  "phase_3_grow": 0.0,
+  "phase_4_accuracy": 57.2400016784668,
+  "phase_4_units": 64.0,
+  "phase_4_grow": 0.0,
+  "task_phase_accuracy": [
+    [
+      68.413330078125,
+      84.09268188476562,
+      84.32184600830078,
+      83.5810775756836
+    ],
+    [
+      NaN,
+      52.033485412597656,
+      70.4604721069336,
+      71.12676239013672
+    ],
+    [
+      NaN,
+      NaN,
+      50.778472900390625,
+      67.99468994140625
+    ],
+    [
+      NaN,
+      NaN,
+      NaN,
+      50.028507232666016
+    ]
+  ],
+  "task0_phase1": 68.413330078125,
+  "task0_last_phase": 83.5810775756836,
+  "growth_analysis": {
+    "grow_decisions_after_error": 0.0,
+    "hold_decisions_after_error": 46138.0
+  },
+  "run_name": "fixed-64",
+  "config": {
+    "steps": 240,
+    "max_tasks": 4,
+    "n_cues": 4,
+    "n_actions": 4,
+    "fault_probability": 0.65,
+    "rehearsal_fraction": 0.3,
+    "cue_gain": 2.0,
+    "no_delay": false,
+    "pool": 128,
+    "initial_units": 64,
+    "min_units": 8,
+    "k": 1,
+    "novelty": 0.9,
+    "imprint_gain": 1.5,
+    "structure": "fixed",
+    "prune_interval": 12,
+    "random_policy": false,
+    "plasticity": true,
+    "metacognition": true,
+    "init_eta": 0.0,
+    "init_temperature": 0.3,
+    "generations": 100,
+    "population": 64,
+    "lives": 32,
+    "sigma": 0.05,
+    "es_lr": 0.02,
+    "weight_decay": 0.001,
+    "complexity_cost": 0.005,
+    "structural_change_cost": 0.002,
+    "survival_bonus": 5.0,
+    "death_penalty": 5.0,
+    "accuracy_weight": 0.0,
+    "seed": 1
+  }
+}

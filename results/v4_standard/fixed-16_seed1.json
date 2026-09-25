@@ -1,0 +1,93 @@
+{
+  "accuracy": 54.240142822265625,
+  "chance": 25.0,
+  "cue_blind_life": 39.94966506958008,
+  "cue_blind_phase": 49.78165817260742,
+  "survival": 99.9000072479248,
+  "survival_fault": 99.84567761421204,
+  "reward": 59.09397888183594,
+  "average_units": 15.999533653259277,
+  "final_units": 16.0,
+  "grow_events": 0.0,
+  "prune_events": 0.0,
+  "phase_1_accuracy": 63.54999923706055,
+  "phase_1_units": 16.0,
+  "phase_1_grow": 0.0,
+  "phase_2_accuracy": 56.23666763305664,
+  "phase_2_units": 16.0,
+  "phase_2_grow": 0.0,
+  "phase_3_accuracy": 50.5966682434082,
+  "phase_3_units": 16.0,
+  "phase_3_grow": 0.0,
+  "phase_4_accuracy": 46.576210021972656,
+  "phase_4_units": 16.0,
+  "phase_4_grow": 0.0,
+  "task_phase_accuracy": [
+    [
+      63.54999923706055,
+      76.51776885986328,
+      76.14479064941406,
+      73.34459686279297
+    ],
+    [
+      NaN,
+      47.57646560668945,
+      60.18679428100586,
+      58.651912689208984
+    ],
+    [
+      NaN,
+      NaN,
+      42.84478759765625,
+      50.86321258544922
+    ],
+    [
+      NaN,
+      NaN,
+      NaN,
+      40.485694885253906
+    ]
+  ],
+  "task0_phase1": 63.54999923706055,
+  "task0_last_phase": 73.34459686279297,
+  "growth_analysis": {
+    "grow_decisions_after_error": 0.0,
+    "hold_decisions_after_error": 54910.0
+  },
+  "run_name": "fixed-16",
+  "config": {
+    "steps": 240,
+    "max_tasks": 4,
+    "n_cues": 4,
+    "n_actions": 4,
+    "fault_probability": 0.65,
+    "rehearsal_fraction": 0.3,
+    "cue_gain": 2.0,
+    "no_delay": false,
+    "pool": 128,
+    "initial_units": 16,
+    "min_units": 8,
+    "k": 1,
+    "novelty": 0.9,
+    "imprint_gain": 1.5,
+    "structure": "fixed",
+    "prune_interval": 12,
+    "random_policy": false,
+    "plasticity": true,
+    "metacognition": true,
+    "init_eta": 0.0,
+    "init_temperature": 0.3,
+    "generations": 100,
+    "population": 64,
+    "lives": 32,
+    "sigma": 0.05,
+    "es_lr": 0.02,
+    "weight_decay": 0.001,
+    "complexity_cost": 0.005,
+    "structural_change_cost": 0.002,
+    "survival_bonus": 5.0,
+    "death_penalty": 5.0,
+    "accuracy_weight": 0.0,
+    "seed": 1
+  }
+}
