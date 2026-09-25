@@ -8,3 +8,13 @@ venv/
 checkpoints*/
 results_v*/
 *.pt
+
+# LaTeX build files
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.bbl
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk

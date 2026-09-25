@@ -1,0 +1,93 @@
+{
+  "reference_free": {
+    "final_gap_mean": 33.5910367827147,
+    "final_gap_sd": 5.42407896149623,
+    "final_T_mean": 16.91463976636356,
+    "final_T_sd": 1.2017417850230228,
+    "final_E_mean": 20.472498888447422,
+    "frac_T_below_start": 0.0,
+    "max_gap": 48.80914473190909
+  },
+  "mrc": {
+    "final_gap_mean": 21.904783039118257,
+    "final_gap_sd": 2.7651149941901316,
+    "final_T_mean": 18.64666813369258,
+    "final_T_sd": 0.6021713746369669,
+    "final_E_mean": 20.29576240156679,
+    "frac_T_below_start": 0.0,
+    "max_gap": 28.50014533031121
+  },
+  "reference_free_cheap": {
+    "final_gap_mean": 76.65735476775453,
+    "final_gap_sd": 5.295102314127151,
+    "final_T_mean": 9.005779165927178,
+    "final_T_sd": 2.1845881417109574,
+    "final_E_mean": 153.5567636641268,
+    "frac_T_below_start": 0.0,
+    "max_gap": 83.00666438818727
+  },
+  "mrc_cheap": {
+    "final_gap_mean": 26.22154863467321,
+    "final_gap_sd": 2.2072693822973815,
+    "final_T_mean": 18.11951940994851,
+    "final_T_sd": 0.6026237881578568,
+    "final_E_mean": 35.94264350330598,
+    "frac_T_below_start": 0.0,
+    "max_gap": 31.724474355292607
+  },
+  "sweep": [
+    {
+      "eps_plus_delta": 10,
+      "final_T_mean": 19.801563212575036,
+      "final_T_sd": 0.478687813435285,
+      "bound": 19.696155060244163
+    },
+    {
+      "eps_plus_delta": 30,
+      "final_T_mean": 17.431855345484912,
+      "final_T_sd": 0.4786878134348481,
+      "bound": 17.320508075688775
+    },
+    {
+      "eps_plus_delta": 50,
+      "final_T_mean": 12.978261353236329,
+      "final_T_sd": 0.4786878134344272,
+      "bound": 12.855752193730789
+    },
+    {
+      "eps_plus_delta": 70,
+      "final_T_mean": 9.797942264510533,
+      "final_T_sd": 0.6251713782239952,
+      "bound": 6.840402866513378
+    },
+    {
+      "eps_plus_delta": 85,
+      "final_T_mean": 5.1991109484303,
+      "final_T_sd": 0.5800655930919029,
+      "bound": 1.743114854953163
+    },
+    {
+      "eps_plus_delta": 95,
+      "final_T_mean": 1.9463917945059421,
+      "final_T_sd": 0.5465444946319065,
+      "bound": -1.7431148549531645
+    },
+    {
+      "eps_plus_delta": 110,
+      "final_T_mean": -2.995706445119167,
+      "final_T_sd": 0.5223613408375067,
+      "bound": -6.840402866513375
+    }
+  ],
+  "params": {
+    "N": 20,
+    "steps": 400,
+    "eta_theta": 0.05,
+    "eta_w": 0.05,
+    "sigma": 0.1,
+    "eps_deg": 15,
+    "delta_deg": 20,
+    "kappa": 9.0,
+    "seeds": 200
+  }
+}
