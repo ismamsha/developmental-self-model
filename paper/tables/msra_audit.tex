@@ -1,0 +1,27 @@
+\begin{table}[t]
+\centering\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Re-execution of the original agent (\texttt{main.py}) with ablations. Survival (\%) over the last 50 of 100 online training episodes, mean$\pm$SD over 3 seeds. Caution: \% of steps in caution mode (last 50 episodes). AUROC: how well the prediction error the agent \emph{uses} separates shock steps from other steps (0.5 = no information), hard difficulty. Source: \texttt{paper/results/msra\_audit.json}.}
+\label{tab:msra-audit}
+\begin{tabular}{lccccccc}
+\toprule
+Variant & Normal & Hard & Expert & Expert reward & Caution (hard) & Work \% (hard) & Shock AUROC (hard)\\
+\midrule
+Full agent (rules + metacognition) & 100.0 & n/a & n/a & n/a & n/a & n/a & n/a\\
+Full, doubt clamped to 0 & 100.0 & n/a & n/a & n/a & n/a & n/a & n/a\\
+\addlinespace[2pt]
+Rule layer only (no learning) & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+No rule layer & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+No rules, no hard-coded economics & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+\quad same, doubt clamped to 0 & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+\addlinespace[2pt]
+Base imagination agent & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+Actor-critic network acting & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+\addlinespace[2pt]
+Self-graded doubt, full agent & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+Self-graded doubt, no rules & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+Random policy & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+Always rest & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+\bottomrule
+\end{tabular}
+\end{table}

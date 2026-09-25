@@ -1,0 +1,43 @@
+==============================================================================================================
+HAND-BUILT GENOME — no evolution. Same lives for every configuration.
+4 tasks x 4 cues x 4 actions, 240 steps, k=1, pool=128, faults p=0.65, 400 lives x seeds [0, 1, 2]
+reward noise 0.0, reversal False (tasks < 2), rehearsal 0.3
+chance 25.0%  |  perfect-learner ceiling 80.4% (seed 0)
+==============================================================================================================
+config             |         acc  blind  margin |    P1    P2    P3    P4 | t0 end |  avg u  final  grow |   rev repair
+/tmp/claude-0/-home-user-Self-Referential-AI-with-Proactive-Imagination-Metacognition/5ca22492-b901-59b5-b3f3-cec26875231b/scratchpad/qw/dsm_benchmark_b_v4.py:1187: RuntimeWarning: Mean of empty slice
+  return float(np.nanmean([r[key] for r in runs]))
+ctrl:random        |  24.9± 0.1%  50.0%  -25.1 | 24.4% 25.0% 24.9% 25.2% |  24.8% |   16.0   16.0   0.0 |     -    0.0
+ctrl:no-plasticity |  24.9± 0.1%  50.0%  -25.1 | 24.4% 25.0% 24.9% 25.2% |  24.8% |   16.0   16.0   0.0 |     -    0.0
+fixed-8            |  46.3± 0.2%  50.0%   -3.7 | 53.3% 49.0% 43.3% 39.5% |  67.0% |    8.0    8.0   0.0 |     -    0.0
+fixed-16           |  50.5± 0.2%  50.0%   +0.5 | 56.2% 53.6% 47.7% 44.6% |  74.4% |   16.0   16.0   0.0 |     -    0.0
+fixed-32           |  53.8± 0.1%  50.0%   +3.8 | 57.4% 56.6% 52.5% 48.6% |  77.7% |   32.0   32.0   0.0 |     -    0.0
+fixed-64           |  56.7± 0.3%  50.0%   +6.7 | 58.7% 59.2% 55.8% 53.2% |  83.4% |   64.0   64.0   0.0 |     -    0.0
+fixed-128          |  58.6± 0.3%  50.0%   +8.6 | 59.9% 60.7% 57.9% 56.1% |  86.0% |  128.0  128.0   0.0 |     -    0.0
+/tmp/claude-0/-home-user-Self-Referential-AI-with-Proactive-Imagination-Metacognition/5ca22492-b901-59b5-b3f3-cec26875231b/scratchpad/qw/dsm_benchmark_b_v4.py:1187: RuntimeWarning: Mean of empty slice
+  return float(np.nanmean([r[key] for r in runs]))
+random-16          |  50.5± 0.0%  50.0%   +0.5 | 53.5% 51.9% 49.1% 47.5% |  56.0% |   41.8   67.8  51.8 |     -    0.0
+/tmp/claude-0/-home-user-Self-Referential-AI-with-Proactive-Imagination-Metacognition/5ca22492-b901-59b5-b3f3-cec26875231b/scratchpad/qw/dsm_benchmark_b_v4.py:1187: RuntimeWarning: Mean of empty slice
+  return float(np.nanmean([r[key] for r in runs]))
+imprint-16         |  58.6± 0.6%  50.0%   +8.6 | 53.3% 60.1% 60.6% 60.6% |  87.5% |   23.9   29.8  13.8 |     -    0.0
+/tmp/claude-0/-home-user-Self-Referential-AI-with-Proactive-Imagination-Metacognition/5ca22492-b901-59b5-b3f3-cec26875231b/scratchpad/qw/dsm_benchmark_b_v4.py:1187: RuntimeWarning: Mean of empty slice
+  return float(np.nanmean([r[key] for r in runs]))
+full-16            |  58.4± 0.6%  50.0%   +8.4 | 53.3% 60.1% 60.1% 60.1% |  87.4% |   23.9   29.6  13.9 |     -    0.0
+/tmp/claude-0/-home-user-Self-Referential-AI-with-Proactive-Imagination-Metacognition/5ca22492-b901-59b5-b3f3-cec26875231b/scratchpad/qw/dsm_benchmark_b_v4.py:1187: RuntimeWarning: Mean of empty slice
+  return float(np.nanmean([r[key] for r in runs]))
+nolearn-16         |  58.6± 0.5%  50.0%   +8.6 | 53.2% 60.5% 60.4% 60.3% |  87.5% |   24.0   29.7  14.0 |     -    0.0
+/tmp/claude-0/-home-user-Self-Referential-AI-with-Proactive-Imagination-Metacognition/5ca22492-b901-59b5-b3f3-cec26875231b/scratchpad/qw/dsm_benchmark_b_v4.py:1187: RuntimeWarning: Mean of empty slice
+  return float(np.nanmean([r[key] for r in runs]))
+basic-16           |  56.4± 0.4%  50.0%   +6.4 | 51.2% 58.0% 58.0% 58.5% |  83.5% |   23.4   29.0  13.2 |     -    0.0
+--------------------------------------------------------------------------------------------------------------
+margin = accuracy - cue-blind (best fixed action per phase, hindsight). rev = accuracy on remapped
+patterns after the reversal (--reversal). repair = slot resets per life.
+
+Growth by phase (mean units added per life):
+  random-16       P1 12.56  P2 11.93  P3 13.30  P4 13.97
+  imprint-16      P1  3.74  P2  3.32  P3  3.34  P4  3.37
+  full-16         P1  3.74  P2  3.33  P3  3.38  P4  3.41
+  nolearn-16      P1  3.76  P2  3.41  P3  3.41  P4  3.42
+  basic-16        P1  3.50  P2  3.22  P3  3.27  P4  3.24
+
+Saved: /home/user/Self-Referential-AI-with-Proactive-Imagination-Metacognition/paper/results/v4_standard/hand_comparison.json

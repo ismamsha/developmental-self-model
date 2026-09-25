@@ -1,0 +1,1276 @@
+{
+  "control:random": [
+    {
+      "accuracy": 25.268749237060547,
+      "chance": 25.0,
+      "cue_blind_life": 37.93333435058594,
+      "cue_blind_phase": 45.84166717529297,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 29.773969650268555,
+      "average_units": 16.0,
+      "final_units": 16.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 25.2105712890625,
+      "phase_1_accuracy": 24.75,
+      "phase_1_units": 16.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 25.29166603088379,
+      "phase_2_units": 16.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 25.83333396911621,
+      "phase_3_units": 16.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 25.200000762939453,
+      "phase_4_units": 16.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          24.75,
+          24.790056228637695,
+          25.537633895874023,
+          24.40119743347168
+        ],
+        [
+          NaN,
+          25.785642623901367,
+          26.261938095092773,
+          25.355566024780273
+        ],
+        [
+          NaN,
+          NaN,
+          25.771503448486328,
+          25.829504013061523
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          25.208402633666992
+        ]
+      ],
+      "task0_phase1": 24.75,
+      "task0_last_phase": 24.40119743347168
+    },
+    {
+      "accuracy": 24.931249618530273,
+      "chance": 25.0,
+      "cue_blind_life": 37.64374923706055,
+      "cue_blind_phase": 46.16041564941406,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 28.80197525024414,
+      "average_units": 16.0,
+      "final_units": 16.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 24.98600196838379,
+      "phase_1_accuracy": 24.825000762939453,
+      "phase_1_units": 16.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 25.058332443237305,
+      "phase_2_units": 16.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 25.15833282470703,
+      "phase_3_units": 16.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 24.683332443237305,
+      "phase_4_units": 16.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          24.825000762939453,
+          24.747055053710938,
+          25.853824615478516,
+          23.66265106201172
+        ],
+        [
+          NaN,
+          25.372634887695312,
+          24.875951766967773,
+          25.7286434173584
+        ],
+        [
+          NaN,
+          NaN,
+          24.96280288696289,
+          25.324674606323242
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          24.473285675048828
+        ]
+      ],
+      "task0_phase1": 24.825000762939453,
+      "task0_last_phase": 23.66265106201172
+    },
+    {
+      "accuracy": 25.29166603088379,
+      "chance": 25.0,
+      "cue_blind_life": 37.92916488647461,
+      "cue_blind_phase": 46.55416488647461,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 29.8399658203125,
+      "average_units": 16.0,
+      "final_units": 16.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 24.957216262817383,
+      "phase_1_accuracy": 25.45833396911621,
+      "phase_1_units": 16.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 25.441667556762695,
+      "phase_2_units": 16.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 25.200000762939453,
+      "phase_3_units": 16.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 25.066667556762695,
+      "phase_4_units": 16.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          25.45833396911621,
+          25.111736297607422,
+          26.263628005981445,
+          23.186199188232422
+        ],
+        [
+          NaN,
+          25.77613639831543,
+          25.180801391601562,
+          25.699481964111328
+        ],
+        [
+          NaN,
+          NaN,
+          24.667003631591797,
+          25.460886001586914
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          25.344715118408203
+        ]
+      ],
+      "task0_phase1": 25.45833396911621,
+      "task0_last_phase": 23.186199188232422
+    }
+  ],
+  "control:no-plasticity": [
+    {
+      "accuracy": 25.268749237060547,
+      "chance": 25.0,
+      "cue_blind_life": 37.93333435058594,
+      "cue_blind_phase": 45.84166717529297,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 29.773969650268555,
+      "average_units": 16.0,
+      "final_units": 16.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 25.2105712890625,
+      "phase_1_accuracy": 24.75,
+      "phase_1_units": 16.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 25.29166603088379,
+      "phase_2_units": 16.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 25.83333396911621,
+      "phase_3_units": 16.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 25.200000762939453,
+      "phase_4_units": 16.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          24.75,
+          24.790056228637695,
+          25.537633895874023,
+          24.40119743347168
+        ],
+        [
+          NaN,
+          25.785642623901367,
+          26.261938095092773,
+          25.355566024780273
+        ],
+        [
+          NaN,
+          NaN,
+          25.771503448486328,
+          25.829504013061523
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          25.208402633666992
+        ]
+      ],
+      "task0_phase1": 24.75,
+      "task0_last_phase": 24.40119743347168
+    },
+    {
+      "accuracy": 24.931249618530273,
+      "chance": 25.0,
+      "cue_blind_life": 37.64374923706055,
+      "cue_blind_phase": 46.16041564941406,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 28.80197525024414,
+      "average_units": 16.0,
+      "final_units": 16.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 24.98600196838379,
+      "phase_1_accuracy": 24.825000762939453,
+      "phase_1_units": 16.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 25.058332443237305,
+      "phase_2_units": 16.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 25.15833282470703,
+      "phase_3_units": 16.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 24.683332443237305,
+      "phase_4_units": 16.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          24.825000762939453,
+          24.747055053710938,
+          25.853824615478516,
+          23.66265106201172
+        ],
+        [
+          NaN,
+          25.372634887695312,
+          24.875951766967773,
+          25.7286434173584
+        ],
+        [
+          NaN,
+          NaN,
+          24.96280288696289,
+          25.324674606323242
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          24.473285675048828
+        ]
+      ],
+      "task0_phase1": 24.825000762939453,
+      "task0_last_phase": 23.66265106201172
+    },
+    {
+      "accuracy": 25.29166603088379,
+      "chance": 25.0,
+      "cue_blind_life": 37.92916488647461,
+      "cue_blind_phase": 46.55416488647461,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 29.8399658203125,
+      "average_units": 16.0,
+      "final_units": 16.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 24.957216262817383,
+      "phase_1_accuracy": 25.45833396911621,
+      "phase_1_units": 16.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 25.441667556762695,
+      "phase_2_units": 16.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 25.200000762939453,
+      "phase_3_units": 16.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 25.066667556762695,
+      "phase_4_units": 16.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          25.45833396911621,
+          25.111736297607422,
+          26.263628005981445,
+          23.186199188232422
+        ],
+        [
+          NaN,
+          25.77613639831543,
+          25.180801391601562,
+          25.699481964111328
+        ],
+        [
+          NaN,
+          NaN,
+          24.667003631591797,
+          25.460886001586914
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          25.344715118408203
+        ]
+      ],
+      "task0_phase1": 25.45833396911621,
+      "task0_last_phase": 23.186199188232422
+    }
+  ],
+  "fixed-16": [
+    {
+      "accuracy": 42.69583511352539,
+      "chance": 25.0,
+      "cue_blind_life": 37.93333435058594,
+      "cue_blind_phase": 45.84166717529297,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 79.96408081054688,
+      "average_units": 16.0,
+      "final_units": 16.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 17.629974365234375,
+      "phase_1_accuracy": 55.05833435058594,
+      "phase_1_units": 16.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 50.44166564941406,
+      "phase_2_units": 16.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 35.59166717529297,
+      "phase_3_units": 16.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 29.691667556762695,
+      "phase_4_units": 16.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          55.05833435058594,
+          63.92341232299805,
+          38.91128921508789,
+          18.063871383666992
+        ],
+        [
+          NaN,
+          37.165069580078125,
+          32.469303131103516,
+          19.519372940063477
+        ],
+        [
+          NaN,
+          NaN,
+          35.47275161743164,
+          44.46146011352539
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          32.21073532104492
+        ]
+      ],
+      "task0_phase1": 55.05833435058594,
+      "task0_last_phase": 18.063871383666992,
+      "growth_analysis": {
+        "grow_decisions_after_error": 0.0,
+        "hold_decisions_after_error": 27506.0
+      }
+    },
+    {
+      "accuracy": 43.087501525878906,
+      "chance": 25.0,
+      "cue_blind_life": 37.64374923706055,
+      "cue_blind_phase": 46.16041564941406,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 81.09208679199219,
+      "average_units": 16.0,
+      "final_units": 16.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 17.833147048950195,
+      "phase_1_accuracy": 55.46666717529297,
+      "phase_1_units": 16.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 51.358333587646484,
+      "phase_2_units": 16.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 36.03333282470703,
+      "phase_3_units": 16.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 29.491666793823242,
+      "phase_4_units": 16.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          55.46666717529297,
+          63.476531982421875,
+          36.91939926147461,
+          14.265060424804688
+        ],
+        [
+          NaN,
+          39.1224250793457,
+          35.395301818847656,
+          22.763818740844727
+        ],
+        [
+          NaN,
+          NaN,
+          35.92329406738281,
+          40.90909194946289
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          33.22096633911133
+        ]
+      ],
+      "task0_phase1": 55.46666717529297,
+      "task0_last_phase": 14.265060424804688,
+      "growth_analysis": {
+        "grow_decisions_after_error": 0.0,
+        "hold_decisions_after_error": 27318.0
+      }
+    },
+    {
+      "accuracy": 44.83333206176758,
+      "chance": 25.0,
+      "cue_blind_life": 37.92916488647461,
+      "cue_blind_phase": 46.55416488647461,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 86.1201171875,
+      "average_units": 16.0,
+      "final_units": 16.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 16.229320526123047,
+      "phase_1_accuracy": 58.24166488647461,
+      "phase_1_units": 16.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 54.141666412353516,
+      "phase_2_units": 16.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 37.15833282470703,
+      "phase_3_units": 16.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 29.79166603088379,
+      "phase_4_units": 16.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          58.24166488647461,
+          68.11785888671875,
+          38.75123977661133,
+          13.597158432006836
+        ],
+        [
+          NaN,
+          39.973148345947266,
+          33.82643127441406,
+          20.829015731811523
+        ],
+        [
+          NaN,
+          NaN,
+          38.054290771484375,
+          44.49427032470703
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          33.026920318603516
+        ]
+      ],
+      "task0_phase1": 58.24166488647461,
+      "task0_last_phase": 13.597158432006836,
+      "growth_analysis": {
+        "grow_decisions_after_error": 0.0,
+        "hold_decisions_after_error": 26480.0
+      }
+    }
+  ],
+  "fixed-128": [
+    {
+      "accuracy": 48.64791488647461,
+      "chance": 25.0,
+      "cue_blind_life": 37.93333435058594,
+      "cue_blind_phase": 45.84166717529297,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 97.10614013671875,
+      "average_units": 128.0,
+      "final_units": 128.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 15.72756290435791,
+      "phase_1_accuracy": 62.32500076293945,
+      "phase_1_units": 128.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 59.07500076293945,
+      "phase_2_units": 128.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 40.358333587646484,
+      "phase_3_units": 128.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 32.83333206176758,
+      "phase_4_units": 128.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          62.32500076293945,
+          75.47866821289062,
+          43.279571533203125,
+          15.469061851501465
+        ],
+        [
+          NaN,
+          42.92094039916992,
+          36.56207275390625,
+          20.402158737182617
+        ],
+        [
+          NaN,
+          NaN,
+          40.75837326049805,
+          53.59877395629883
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          36.07869338989258
+        ]
+      ],
+      "task0_phase1": 62.32500076293945,
+      "task0_last_phase": 15.469061851501465,
+      "growth_analysis": {
+        "grow_decisions_after_error": 0.0,
+        "hold_decisions_after_error": 24649.0
+      }
+    },
+    {
+      "accuracy": 49.787498474121094,
+      "chance": 25.0,
+      "cue_blind_life": 37.64374923706055,
+      "cue_blind_phase": 46.16041564941406,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 100.38814544677734,
+      "average_units": 128.0,
+      "final_units": 128.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 12.723963737487793,
+      "phase_1_accuracy": 62.65833282470703,
+      "phase_1_units": 128.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 60.599998474121094,
+      "phase_2_units": 128.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 41.18333435058594,
+      "phase_3_units": 128.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 34.70833206176758,
+      "phase_4_units": 128.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          62.65833282470703,
+          74.30751037597656,
+          39.5150260925293,
+          11.614458084106445
+        ],
+        [
+          NaN,
+          46.75933837890625,
+          37.44624710083008,
+          16.783920288085938
+        ],
+        [
+          NaN,
+          NaN,
+          43.858489990234375,
+          54.59540557861328
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          42.08663558959961
+        ]
+      ],
+      "task0_phase1": 62.65833282470703,
+      "task0_last_phase": 11.614458084106445,
+      "growth_analysis": {
+        "grow_decisions_after_error": 0.0,
+        "hold_decisions_after_error": 24102.0
+      }
+    },
+    {
+      "accuracy": 51.547916412353516,
+      "chance": 25.0,
+      "cue_blind_life": 37.92916488647461,
+      "cue_blind_phase": 46.55416488647461,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 105.45816040039062,
+      "average_units": 128.0,
+      "final_units": 128.0,
+      "grow_events": 0.0,
+      "prune_events": 0.0,
+      "repair_events": 0.0,
+      "reversed_accuracy": 12.35025691986084,
+      "phase_1_accuracy": 65.54166412353516,
+      "phase_1_units": 128.0,
+      "phase_1_grow": 0.0,
+      "phase_2_accuracy": 63.78333282470703,
+      "phase_2_units": 128.0,
+      "phase_2_grow": 0.0,
+      "phase_3_accuracy": 42.50833511352539,
+      "phase_3_units": 128.0,
+      "phase_3_grow": 0.0,
+      "phase_4_accuracy": 34.358333587646484,
+      "phase_4_units": 128.0,
+      "phase_4_grow": 0.0,
+      "task_phase_accuracy": [
+        [
+          65.54166412353516,
+          79.98675537109375,
+          43.27717208862305,
+          8.269913673400879
+        ],
+        [
+          NaN,
+          47.356937408447266,
+          38.46154022216797,
+          18.03108787536621
+        ],
+        [
+          NaN,
+          NaN,
+          44.19153594970703,
+          54.010963439941406
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          41.49704360961914
+        ]
+      ],
+      "task0_phase1": 65.54166412353516,
+      "task0_last_phase": 8.269913673400879,
+      "growth_analysis": {
+        "grow_decisions_after_error": 0.0,
+        "hold_decisions_after_error": 23257.0
+      }
+    }
+  ],
+  "full-16": [
+    {
+      "accuracy": 53.735416412353516,
+      "chance": 25.0,
+      "cue_blind_life": 37.93333435058594,
+      "cue_blind_phase": 45.84166717529297,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 111.75813293457031,
+      "average_units": 24.797624588012695,
+      "final_units": 31.25,
+      "grow_events": 15.649999618530273,
+      "prune_events": 0.4000000059604645,
+      "repair_events": 18.969999313354492,
+      "reversed_accuracy": 29.39297103881836,
+      "phase_1_accuracy": 58.974998474121094,
+      "phase_1_units": 19.532917022705078,
+      "phase_1_grow": 3.9600000381469727,
+      "phase_2_accuracy": 60.25833511352539,
+      "phase_2_units": 22.778247833251953,
+      "phase_2_grow": 3.7200000286102295,
+      "phase_3_accuracy": 47.891666412353516,
+      "phase_3_units": 26.550752639770508,
+      "phase_3_grow": 4.019999980926514,
+      "phase_4_accuracy": 47.81666564941406,
+      "phase_4_units": 30.455669403076172,
+      "phase_4_grow": 3.950000047683716,
+      "task_phase_accuracy": [
+        [
+          58.974998474121094,
+          71.43096923828125,
+          45.90053939819336,
+          36.9261474609375
+        ],
+        [
+          NaN,
+          49.255706787109375,
+          46.04365539550781,
+          33.69298553466797
+        ],
+        [
+          NaN,
+          NaN,
+          49.75377655029297,
+          70.13782501220703
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          48.96632385253906
+        ]
+      ],
+      "task0_phase1": 58.974998474121094,
+      "task0_last_phase": 36.9261474609375,
+      "growth_analysis": {
+        "grow_decisions_after_error": 2660.0,
+        "hold_decisions_after_error": 19547.0,
+        "grow_minus_hold_pressure": -0.017492827028036118,
+        "grow_minus_hold_learnability": 0.02399623394012451,
+        "grow_minus_hold_task_error": -0.02281836047768593,
+        "next_same_pattern_acc_after_grow": 34.192893981933594,
+        "next_same_pattern_acc_after_hold": 37.76054763793945
+      }
+    },
+    {
+      "accuracy": 53.733333587646484,
+      "chance": 25.0,
+      "cue_blind_life": 37.64374923706055,
+      "cue_blind_phase": 46.16041564941406,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 111.75212860107422,
+      "average_units": 24.78713607788086,
+      "final_units": 31.135000228881836,
+      "grow_events": 15.645000457763672,
+      "prune_events": 0.5099999904632568,
+      "repair_events": 18.985000610351562,
+      "reversed_accuracy": 29.227323532104492,
+      "phase_1_accuracy": 58.86666488647461,
+      "phase_1_units": 19.576915740966797,
+      "phase_1_grow": 3.990000009536743,
+      "phase_2_accuracy": 60.30833435058594,
+      "phase_2_units": 22.792085647583008,
+      "phase_2_grow": 3.7149999141693115,
+      "phase_3_accuracy": 47.44166564941406,
+      "phase_3_units": 26.532583236694336,
+      "phase_3_grow": 3.9649999141693115,
+      "phase_4_accuracy": 48.31666564941406,
+      "phase_4_units": 30.37308120727539,
+      "phase_4_grow": 3.9749999046325684,
+      "task_phase_accuracy": [
+        [
+          58.86666488647461,
+          69.92868041992188,
+          44.46721267700195,
+          35.66265106201172
+        ],
+        [
+          NaN,
+          50.594539642333984,
+          44.029109954833984,
+          36.08040237426758
+        ],
+        [
+          NaN,
+          NaN,
+          50.58687210083008,
+          70.97901916503906
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          49.19939422607422
+        ]
+      ],
+      "task0_phase1": 58.86666488647461,
+      "task0_last_phase": 35.66265106201172,
+      "growth_analysis": {
+        "grow_decisions_after_error": 2654.0,
+        "hold_decisions_after_error": 19554.0,
+        "grow_minus_hold_pressure": -0.026194196194410324,
+        "grow_minus_hold_learnability": 0.04511013254523277,
+        "grow_minus_hold_task_error": -0.027643829584121704,
+        "next_same_pattern_acc_after_grow": 34.71538543701172,
+        "next_same_pattern_acc_after_hold": 37.38261032104492
+      }
+    },
+    {
+      "accuracy": 54.329166412353516,
+      "chance": 25.0,
+      "cue_blind_life": 37.92916488647461,
+      "cue_blind_phase": 46.55416488647461,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 113.46813201904297,
+      "average_units": 24.785999298095703,
+      "final_units": 31.110000610351562,
+      "grow_events": 15.654999732971191,
+      "prune_events": 0.5450000166893005,
+      "repair_events": 18.309999465942383,
+      "reversed_accuracy": 30.77581214904785,
+      "phase_1_accuracy": 58.91666793823242,
+      "phase_1_units": 19.540666580200195,
+      "phase_1_grow": 3.9800000190734863,
+      "phase_2_accuracy": 61.775001525878906,
+      "phase_2_units": 22.793001174926758,
+      "phase_2_grow": 3.7100000381469727,
+      "phase_3_accuracy": 47.650001525878906,
+      "phase_3_units": 26.5296688079834,
+      "phase_3_grow": 4.065000057220459,
+      "phase_4_accuracy": 48.974998474121094,
+      "phase_4_units": 30.406583786010742,
+      "phase_4_grow": 3.9000000953674316,
+      "task_phase_accuracy": [
+        [
+          58.91666793823242,
+          72.38867950439453,
+          45.655765533447266,
+          38.203956604003906
+        ],
+        [
+          NaN,
+          51.0152702331543,
+          47.698883056640625,
+          36.99481964111328
+        ],
+        [
+          NaN,
+          NaN,
+          48.642723083496094,
+          69.15794372558594
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          49.606040954589844
+        ]
+      ],
+      "task0_phase1": 58.91666793823242,
+      "task0_last_phase": 38.203956604003906,
+      "growth_analysis": {
+        "grow_decisions_after_error": 2665.0,
+        "hold_decisions_after_error": 19257.0,
+        "grow_minus_hold_pressure": -0.021206865087151527,
+        "grow_minus_hold_learnability": 0.034184426069259644,
+        "grow_minus_hold_task_error": -0.024060547351837158,
+        "next_same_pattern_acc_after_grow": 33.64197540283203,
+        "next_same_pattern_acc_after_hold": 38.74116516113281
+      }
+    }
+  ],
+  "nolearn-16": [
+    {
+      "accuracy": 53.90208435058594,
+      "chance": 25.0,
+      "cue_blind_life": 37.93333435058594,
+      "cue_blind_phase": 45.84166717529297,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 112.23814392089844,
+      "average_units": 24.805185317993164,
+      "final_units": 31.25,
+      "grow_events": 15.649999618530273,
+      "prune_events": 0.4000000059604645,
+      "repair_events": 18.844999313354492,
+      "reversed_accuracy": 29.117048263549805,
+      "phase_1_accuracy": 59.0,
+      "phase_1_units": 19.550498962402344,
+      "phase_1_grow": 3.9700000286102295,
+      "phase_2_accuracy": 60.733333587646484,
+      "phase_2_units": 22.832998275756836,
+      "phase_2_grow": 3.7300000190734863,
+      "phase_3_accuracy": 48.266666412353516,
+      "phase_3_units": 26.544084548950195,
+      "phase_3_grow": 3.984999895095825,
+      "phase_4_accuracy": 47.608333587646484,
+      "phase_4_units": 30.420251846313477,
+      "phase_4_grow": 3.9649999141693115,
+      "task_phase_accuracy": [
+        [
+          59.0,
+          72.03560638427734,
+          46.370967864990234,
+          36.077842712402344
+        ],
+        [
+          NaN,
+          49.60304260253906,
+          46.28240203857422,
+          33.20254898071289
+        ],
+        [
+          NaN,
+          NaN,
+          50.147735595703125,
+          69.93363952636719
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          49.06635665893555
+        ]
+      ],
+      "task0_phase1": 59.0,
+      "task0_last_phase": 36.077842712402344,
+      "growth_analysis": {
+        "grow_decisions_after_error": 2652.0,
+        "hold_decisions_after_error": 19475.0,
+        "grow_minus_hold_pressure": -0.010840050876140594,
+        "grow_minus_hold_learnability": 0.03460540622472763,
+        "grow_minus_hold_task_error": -0.02168010175228119,
+        "next_same_pattern_acc_after_grow": 34.386497497558594,
+        "next_same_pattern_acc_after_hold": 37.872467041015625
+      }
+    },
+    {
+      "accuracy": 53.79999923706055,
+      "chance": 25.0,
+      "cue_blind_life": 37.64374923706055,
+      "cue_blind_phase": 46.16041564941406,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 111.94412994384766,
+      "average_units": 24.785844802856445,
+      "final_units": 31.145000457763672,
+      "grow_events": 15.654999732971191,
+      "prune_events": 0.5099999904632568,
+      "repair_events": 18.9950008392334,
+      "reversed_accuracy": 29.031354904174805,
+      "phase_1_accuracy": 58.724998474121094,
+      "phase_1_units": 19.58358383178711,
+      "phase_1_grow": 3.984999895095825,
+      "phase_2_accuracy": 60.80833435058594,
+      "phase_2_units": 22.827665328979492,
+      "phase_2_grow": 3.734999895095825,
+      "phase_3_accuracy": 47.46666717529297,
+      "phase_3_units": 26.529081344604492,
+      "phase_3_grow": 3.940000057220459,
+      "phase_4_accuracy": 48.20000076293945,
+      "phase_4_units": 30.32925033569336,
+      "phase_4_grow": 3.994999885559082,
+      "task_phase_accuracy": [
+        [
+          58.724998474121094,
+          70.34333801269531,
+          44.6721305847168,
+          35.27710723876953
+        ],
+        [
+          NaN,
+          51.18070602416992,
+          43.996028900146484,
+          35.82914733886719
+        ],
+        [
+          NaN,
+          NaN,
+          50.553810119628906,
+          70.22976684570312
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          49.435359954833984
+        ]
+      ],
+      "task0_phase1": 58.724998474121094,
+      "task0_last_phase": 35.27710723876953,
+      "growth_analysis": {
+        "grow_decisions_after_error": 2655.0,
+        "hold_decisions_after_error": 19521.0,
+        "grow_minus_hold_pressure": -0.013662544079124928,
+        "grow_minus_hold_learnability": 0.04994219169020653,
+        "grow_minus_hold_task_error": -0.027325088158249855,
+        "next_same_pattern_acc_after_grow": 34.67222595214844,
+        "next_same_pattern_acc_after_hold": 37.31498718261719
+      }
+    },
+    {
+      "accuracy": 54.35208511352539,
+      "chance": 25.0,
+      "cue_blind_life": 37.92916488647461,
+      "cue_blind_phase": 46.55416488647461,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 113.53414154052734,
+      "average_units": 24.797103881835938,
+      "final_units": 31.1200008392334,
+      "grow_events": 15.664999961853027,
+      "prune_events": 0.5450000166893005,
+      "repair_events": 18.295000076293945,
+      "reversed_accuracy": 30.433542251586914,
+      "phase_1_accuracy": 59.09166717529297,
+      "phase_1_units": 19.560083389282227,
+      "phase_1_grow": 3.984999895095825,
+      "phase_2_accuracy": 61.974998474121094,
+      "phase_2_units": 22.853498458862305,
+      "phase_2_grow": 3.7249999046325684,
+      "phase_3_accuracy": 47.50833511352539,
+      "phase_3_units": 26.525083541870117,
+      "phase_3_grow": 4.045000076293945,
+      "phase_4_accuracy": 48.83333206176758,
+      "phase_4_units": 30.375749588012695,
+      "phase_4_grow": 3.9100000858306885,
+      "task_phase_accuracy": [
+        [
+          59.09166717529297,
+          72.67008972167969,
+          46.05219650268555,
+          36.42820739746094
+        ],
+        [
+          NaN,
+          51.13274002075195,
+          47.17291259765625,
+          37.30569839477539
+        ],
+        [
+          NaN,
+          NaN,
+          48.42353820800781,
+          68.9586410522461
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          49.86867904663086
+        ]
+      ],
+      "task0_phase1": 59.09166717529297,
+      "task0_last_phase": 36.42820739746094,
+      "growth_analysis": {
+        "grow_decisions_after_error": 2655.0,
+        "hold_decisions_after_error": 19256.0,
+        "grow_minus_hold_pressure": -0.01403001882135868,
+        "grow_minus_hold_learnability": 0.04068797826766968,
+        "grow_minus_hold_task_error": -0.02806003764271736,
+        "next_same_pattern_acc_after_grow": 33.40291213989258,
+        "next_same_pattern_acc_after_hold": 38.50252151489258
+      }
+    }
+  ],
+  "basic-16": [
+    {
+      "accuracy": 51.962501525878906,
+      "chance": 25.0,
+      "cue_blind_life": 37.93333435058594,
+      "cue_blind_phase": 45.84166717529297,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 106.65216064453125,
+      "average_units": 24.438989639282227,
+      "final_units": 30.825000762939453,
+      "grow_events": 15.225000381469727,
+      "prune_events": 0.4000000059604645,
+      "repair_events": 0.30000001192092896,
+      "reversed_accuracy": 12.09700870513916,
+      "phase_1_accuracy": 57.13333511352539,
+      "phase_1_units": 19.295665740966797,
+      "phase_1_grow": 3.9100000858306885,
+      "phase_2_accuracy": 65.2249984741211,
+      "phase_2_units": 22.554916381835938,
+      "phase_2_grow": 3.559999942779541,
+      "phase_3_accuracy": 46.36666488647461,
+      "phase_3_units": 26.12908363342285,
+      "phase_3_grow": 3.9149999618530273,
+      "phase_4_accuracy": 39.125,
+      "phase_4_units": 29.89983367919922,
+      "phase_4_grow": 3.8399999141693115,
+      "task_phase_accuracy": [
+        [
+          57.13333511352539,
+          83.18777465820312,
+          46.505374908447266,
+          7.934131622314453
+        ],
+        [
+          NaN,
+          47.535560607910156,
+          42.871761322021484,
+          20.009809494018555
+        ],
+        [
+          NaN,
+          NaN,
+          47.98095703125,
+          70.08677673339844
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          45.931976318359375
+        ]
+      ],
+      "task0_phase1": 57.13333511352539,
+      "task0_last_phase": 7.934131622314453,
+      "growth_analysis": {
+        "grow_decisions_after_error": 2616.0,
+        "hold_decisions_after_error": 20442.0,
+        "grow_minus_hold_pressure": -0.013409700244665146,
+        "grow_minus_hold_learnability": 0.050353702157735825,
+        "grow_minus_hold_task_error": -0.026819400489330292,
+        "next_same_pattern_acc_after_grow": 34.41274642944336,
+        "next_same_pattern_acc_after_hold": 29.65168571472168
+      }
+    },
+    {
+      "accuracy": 51.34791564941406,
+      "chance": 25.0,
+      "cue_blind_life": 37.64374923706055,
+      "cue_blind_phase": 46.16041564941406,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 104.88214874267578,
+      "average_units": 24.40642547607422,
+      "final_units": 30.7450008392334,
+      "grow_events": 15.255000114440918,
+      "prune_events": 0.5099999904632568,
+      "repair_events": 0.2750000059604645,
+      "reversed_accuracy": 12.91993236541748,
+      "phase_1_accuracy": 55.92499923706055,
+      "phase_1_units": 19.27549934387207,
+      "phase_1_grow": 3.869999885559082,
+      "phase_2_accuracy": 64.51667022705078,
+      "phase_2_units": 22.50341796875,
+      "phase_2_grow": 3.630000114440918,
+      "phase_3_accuracy": 44.88333511352539,
+      "phase_3_units": 26.13216781616211,
+      "phase_3_grow": 3.940000057220459,
+      "phase_4_accuracy": 40.06666564941406,
+      "phase_4_units": 29.837499618530273,
+      "phase_4_grow": 3.815000057220459,
+      "task_phase_accuracy": [
+        [
+          55.92499923706055,
+          80.44451904296875,
+          42.349727630615234,
+          10.120481491088867
+        ],
+        [
+          NaN,
+          48.43409729003906,
+          41.61429214477539,
+          20.35175895690918
+        ],
+        [
+          NaN,
+          NaN,
+          47.74342727661133,
+          70.6793212890625
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          46.82285690307617
+        ]
+      ],
+      "task0_phase1": 55.92499923706055,
+      "task0_last_phase": 10.120481491088867,
+      "growth_analysis": {
+        "grow_decisions_after_error": 2638.0,
+        "hold_decisions_after_error": 20715.0,
+        "grow_minus_hold_pressure": -0.014025731943547726,
+        "grow_minus_hold_learnability": 0.042466968297958374,
+        "grow_minus_hold_task_error": -0.02805146388709545,
+        "next_same_pattern_acc_after_grow": 34.34749221801758,
+        "next_same_pattern_acc_after_hold": 28.82315444946289
+      }
+    },
+    {
+      "accuracy": 51.92708206176758,
+      "chance": 25.0,
+      "cue_blind_life": 37.92916488647461,
+      "cue_blind_phase": 46.55416488647461,
+      "survival": 100.0,
+      "survival_fault": NaN,
+      "reward": 106.55016326904297,
+      "average_units": 24.41192626953125,
+      "final_units": 30.704999923706055,
+      "grow_events": 15.25,
+      "prune_events": 0.5450000166893005,
+      "repair_events": 0.24500000476837158,
+      "reversed_accuracy": 13.705077171325684,
+      "phase_1_accuracy": 56.79999923706055,
+      "phase_1_units": 19.29433250427246,
+      "phase_1_grow": 3.9149999618530273,
+      "phase_2_accuracy": 65.05000305175781,
+      "phase_2_units": 22.577749252319336,
+      "phase_2_grow": 3.615000009536743,
+      "phase_3_accuracy": 45.20000076293945,
+      "phase_3_units": 26.122417449951172,
+      "phase_3_grow": 3.8949999809265137,
+      "phase_4_accuracy": 40.65833282470703,
+      "phase_4_units": 29.77574920654297,
+      "phase_4_grow": 3.825000047683716,
+      "task_phase_accuracy": [
+        [
+          56.79999923706055,
+          81.7414321899414,
+          44.268253326416016,
+          8.219178199768066
+        ],
+        [
+          NaN,
+          48.12887954711914,
+          43.3596305847168,
+          21.55440330505371
+        ],
+        [
+          NaN,
+          NaN,
+          46.61945724487305,
+          70.95166778564453
+        ],
+        [
+          NaN,
+          NaN,
+          NaN,
+          47.225868225097656
+        ]
+      ],
+      "task0_phase1": 56.79999923706055,
+      "task0_last_phase": 8.219178199768066,
+      "growth_analysis": {
+        "grow_decisions_after_error": 2596.0,
+        "hold_decisions_after_error": 20479.0,
+        "grow_minus_hold_pressure": -0.010653447359800339,
+        "grow_minus_hold_learnability": 0.0458357110619545,
+        "grow_minus_hold_task_error": -0.021306894719600677,
+        "next_same_pattern_acc_after_grow": 33.663818359375,
+        "next_same_pattern_acc_after_hold": 29.835712432861328
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+==============================================================================================================
+HAND-BUILT GENOME — no evolution. Same lives for every configuration.
+4 tasks x 4 cues x 4 actions, 480 steps, k=1, pool=128, faults p=0.0, 200 lives x seeds [0, 1, 2]
+reward noise 0.15, reversal True (tasks < 2), rehearsal 0.5
+chance 25.0%  |  perfect-learner ceiling 90.0% (seed 0)
+==============================================================================================================
+config             |         acc  blind  margin |    P1    P2    P3    P4 | t0 end |  avg u  final  grow |   rev repair
+ctrl:random        |  25.2± 0.2%  46.2%  -21.0 | 25.0% 25.3% 25.4% 25.0% |  23.8% |   16.0   16.0   0.0 | 25.1%    0.0
+ctrl:no-plasticity |  25.2± 0.2%  46.2%  -21.0 | 25.0% 25.3% 25.4% 25.0% |  23.8% |   16.0   16.0   0.0 | 25.1%    0.0
+fixed-16           |  43.5± 1.1%  46.2%   -2.6 | 56.3% 52.0% 36.3% 29.7% |  15.3% |   16.0   16.0   0.0 | 17.2%    0.0
+fixed-128          |  50.0± 1.5%  46.2%   +3.8 | 63.5% 61.2% 41.4% 34.0% |  11.8% |  128.0  128.0   0.0 | 13.6%    0.0
+full-16            |  53.9± 0.3%  46.2%   +7.7 | 58.9% 60.8% 47.7% 48.4% |  36.9% |   24.8   31.2  15.6 | 29.8%   18.8
+nolearn-16         |  54.0± 0.3%  46.2%   +7.8 | 58.9% 61.2% 47.7% 48.2% |  35.9% |   24.8   31.2  15.7 | 29.5%   18.7
+basic-16           |  51.7± 0.3%  46.2%   +5.6 | 56.6% 64.9% 45.5% 39.9% |   8.8% |   24.4   30.8  15.2 | 12.9%    0.3
+--------------------------------------------------------------------------------------------------------------
+margin = accuracy - cue-blind (best fixed action per phase, hindsight). rev = accuracy on remapped
+patterns after the reversal (--reversal). repair = slot resets per life.
+
+Growth by phase (mean units added per life):
+  full-16         P1  3.98  P2  3.71  P3  4.02  P4  3.94
+  nolearn-16      P1  3.98  P2  3.73  P3  3.99  P4  3.96
+  basic-16        P1  3.90  P2  3.60  P3  3.92  P4  3.83
+
+Saved: /home/user/Self-Referential-AI-with-Proactive-Imagination-Metacognition/paper/results/v4_meta/hand_comparison.json
