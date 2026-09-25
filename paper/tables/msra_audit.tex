@@ -1,27 +1,28 @@
 \begin{table}[t]
 \centering\scriptsize
-\setlength{\tabcolsep}{3.5pt}
-\caption{Re-execution of the original agent (\texttt{main.py}) with ablations. Survival (\%) over the last 50 of 100 online training episodes, mean$\pm$SD over 3 seeds. Caution: \% of steps in caution mode (last 50 episodes). AUROC: how well the prediction error the agent \emph{uses} separates shock steps from other steps (0.5 = no information), hard difficulty. Source: \texttt{paper/results/msra\_audit.json}.}
+\setlength{\tabcolsep}{3pt}
+\caption{Re-execution of the original agent (\texttt{main.py}) with ablations. Survival (\%) over the last 50 of 100 online training episodes, mean$\pm$SD over 3 seeds. Reward, caution (\% of steps in caution mode), work (\% of work actions) and AUROC are for hard difficulty; AUROC measures how well the prediction error the agent \emph{uses} separates shock steps from other steps (0.5 = no information). Source: \texttt{paper/results/msra\_audit.json}.}
 \label{tab:msra-audit}
 \begin{tabular}{lccccccc}
 \toprule
-Variant & Normal & Hard & Expert & Expert reward & Caution (hard) & Work \% (hard) & Shock AUROC (hard)\\
+Variant & Normal & Hard & Expert & Reward & Caution & Work \% & AUROC\\
 \midrule
-Full agent (rules + metacognition) & 100.0 & n/a & n/a & n/a & n/a & n/a & n/a\\
-Full, doubt clamped to 0 & 100.0 & n/a & n/a & n/a & n/a & n/a & n/a\\
+Full agent & 100.0 & 76.7$\pm$2.3 & 5.3$\pm$4.2 & 21.9$\pm$2.2 & 91.4$\pm$2.0 & 19$\pm$1 & 0.90\\
+\quad doubt clamped to 0 & 100.0 & 56.7$\pm$6.4 & 6.0$\pm$3.5 & 41.6$\pm$1.2 & -- & 34$\pm$1 & 0.81\\
+\quad without rule layer & 100.0 & 76.0$\pm$8.7 & 10.7$\pm$4.2 & 24.4$\pm$2.8 & 83.1$\pm$3.3 & 17$\pm$2 & 0.89\\
+Rule layer alone & 100.0 & 51.3$\pm$12.9 & 1.3$\pm$2.3 & 33.0$\pm$2.2 & -- & 33$\pm$2 & 0.84\\
 \addlinespace[2pt]
-Rule layer only (no learning) & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
-No rule layer & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
-No rules, no hard-coded economics & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
-\quad same, doubt clamped to 0 & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+No rules, no coded economics & 100.0 & 94.0$\pm$2.0 & 8.7$\pm$4.2 & 7.3$\pm$0.5 & 53.0$\pm$3.2 & 3$\pm$0 & 0.90\\
+\quad doubt clamped to 0 & 99.3$\pm$1.2 & 8.0$\pm$3.5 & 0.0 & 1.4$\pm$1.9 & -- & 26$\pm$2 & 0.82\\
 \addlinespace[2pt]
-Base imagination agent & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
-Actor-critic network acting & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+Base imagination agent & 100.0 & 83.3$\pm$11.0 & 8.7$\pm$3.1 & 7.1$\pm$0.8 & -- & 3$\pm$0 & 0.83\\
+Actor-critic acting & 19.3$\pm$7.0 & 0.0 & 0.0 & 3.0$\pm$0.5 & -- & 58$\pm$1 & --\\
 \addlinespace[2pt]
-Self-graded doubt, full agent & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
-Self-graded doubt, no rules & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
-Random policy & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
-Always rest & n/a & n/a & n/a & n/a & n/a & n/a & n/a\\
+Full, self-graded doubt & 100.0 & 48.7$\pm$11.0 & 3.3$\pm$1.2 & 36.9$\pm$2.5 & 0.7$\pm$0.5 & 33$\pm$3 & 0.51\\
+No rules, self-graded doubt & 36.0$\pm$17.4 & 8.7$\pm$9.9 & 0.7$\pm$1.2 & 9.2$\pm$9.9 & 16.3$\pm$9.1 & 43$\pm$20 & 0.46\\
+\addlinespace[2pt]
+Random policy & 18.0$\pm$5.3 & 0.0 & 0.0 & 3.1$\pm$0.3 & -- & 58$\pm$1 & --\\
+Always rest & 100.0 & 54.7$\pm$2.3 & 9.3$\pm$4.2 & 0.7$\pm$0.2 & -- & 0 & --\\
 \bottomrule
 \end{tabular}
 \end{table}

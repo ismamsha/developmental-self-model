@@ -11,16 +11,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 R = os.path.join(HERE, "..", "results")
 T = os.path.join(HERE, "..", "tables")
 
-ORDER = [("msra_full", "Full agent (rules + metacognition)"),
-         ("msra_no_doubt", "Full, doubt clamped to 0"),
-         ("shield_only", "Rule layer only (no learning)"),
-         ("msra_no_shield", "No rule layer"),
-         ("learned_only", "No rules, no hard-coded economics"),
-         ("learned_only_no_doubt", "\\quad same, doubt clamped to 0"),
+ORDER = [("msra_full", "Full agent"),
+         ("msra_no_doubt", "\\quad doubt clamped to 0"),
+         ("msra_no_shield", "\\quad without rule layer"),
+         ("shield_only", "Rule layer alone"),
+         ("learned_only", "No rules, no coded economics"),
+         ("learned_only_no_doubt", "\\quad doubt clamped to 0"),
          ("proactive_base", "Base imagination agent"),
-         ("actor_critic", "Actor-critic network acting"),
-         ("self_graded_full", "Self-graded doubt, full agent"),
-         ("self_graded_learned_only", "Self-graded doubt, no rules"),
+         ("actor_critic", "Actor-critic acting"),
+         ("self_graded_full", "Full, self-graded doubt"),
+         ("self_graded_learned_only", "No rules, self-graded doubt"),
          ("random", "Random policy"),
          ("always_rest", "Always rest")]
 DIFFS = ["normal", "hard", "expert"]
@@ -81,22 +81,21 @@ if __name__ == "__main__":
 
     os.makedirs(T, exist_ok=True)
     L = []
-    L.append("\\begin{table}[t]\n\\centering\\scriptsize\n\\setlength{\\tabcolsep}{3.5pt}")
+    L.append("\\begin{table}[t]\n\\centering\\scriptsize\n\\setlength{\\tabcolsep}{3pt}")
     L.append("\\caption{Re-execution of the original agent (\\texttt{main.py}) with ablations. Survival (\\%) over the last 50 of "
-             "100 online training episodes, mean$\\pm$SD over 3 seeds. Caution: \\% of steps in caution mode (last 50 episodes). "
-             "AUROC: how well the prediction error the agent \\emph{uses} separates shock steps from other steps (0.5 = no "
-             "information), hard difficulty. Source: \\texttt{paper/results/msra\\_audit.json}.}")
+             "100 online training episodes, mean$\\pm$SD over 3 seeds. "
+             "Reward, caution (\\% of steps in caution mode), work (\\% of work actions) and AUROC are for hard difficulty; "
+             "AUROC measures how well the prediction error the agent \\emph{uses} separates shock steps from other steps (0.5 = no information). Source: \\texttt{paper/results/msra\\_audit.json}.}")
     L.append("\\label{tab:msra-audit}")
     L.append("\\begin{tabular}{lccccccc}\n\\toprule")
-    L.append("Variant & Normal & Hard & Expert & Expert reward & Caution (hard) & Work \\% (hard) & Shock AUROC (hard)\\\\\n\\midrule")
+    L.append("Variant & Normal & Hard & Expert & Reward & Caution & Work \\% & AUROC\\\\\n\\midrule")
     for v, name in ORDER:
         row = [name]
         for diff in DIFFS:
             a = out.get(f"{v}/{diff}")
             row.append(fmt(a["survival_last50"]["mean"], a["survival_last50"]["sd"]) if a else "n/a")
-        e = out.get(f"{v}/expert")
-        row.append(fmt(e["reward_last50"]["mean"], e["reward_last50"]["sd"]) if e else "n/a")
         h = out.get(f"{v}/hard")
+        row.append(fmt(h["reward_last50"]["mean"], h["reward_last50"]["sd"]) if h else "n/a")
         if h:
             row.append(fmt(h["caution_last50"]["mean"], h["caution_last50"]["sd"]) if v.startswith(("msra", "learned", "self_graded")) and "no_doubt" not in v else "--")
             row.append(fmt(h["work_pct_last50"]["mean"], h["work_pct_last50"]["sd"], 0))
@@ -104,7 +103,7 @@ if __name__ == "__main__":
         else:
             row += ["n/a"] * 3
         L.append(" & ".join(row) + "\\\\")
-        if v in ("msra_no_doubt", "learned_only_no_doubt", "actor_critic"):
+        if v in ("shield_only", "learned_only_no_doubt", "actor_critic", "self_graded_learned_only"):
             L.append("\\addlinespace[2pt]")
     L.append("\\bottomrule\n\\end{tabular}\n\\end{table}")
     open(os.path.join(T, "msra_audit.tex"), "w").write("\n".join(L) + "\n")

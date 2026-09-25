@@ -62,8 +62,11 @@ evolved organism family that contained a self-model and doubt reached ${>}90\pct
 evolutionary runs, versus 5 of 9 for comparison families (one-sided Fisher $p=0.092$). This is suggestive, not
 conclusive, and detection did not by itself improve fault survival: a dynamic-programming ceiling shows the
 remaining gap is set by the reward, not by missing information. A re-execution of the original
-metacognitive agent shows that its previously reported perfect survival is attributable to a hand-written rule
-layer rather than to metacognition. In a developmental benchmark where task--cue--action mappings are re-drawn
+metacognitive agent shows that its previously reported perfect survival is uninformative (always resting also
+survives that setting), but that on harder settings its doubt-driven caution mode, not its hand-written rules,
+carries its survival (76.7 vs.\ 56.7\pct\ without doubt), at the price of mostly not working; when the same doubt is
+graded against the agent's own predictions instead of measured outcomes, it stops detecting shocks (AUROC 0.46--0.51
+vs.\ 0.87--0.92) and survival collapses (94.0 $\to$ 8.7\pct\ in the rule-free variant). In a developmental benchmark where task--cue--action mappings are re-drawn
 every lifetime, three successive dense local-plasticity learners failed to beat a cue-blind baseline. With a
 hand-specified sparse associative learner (no evolution), we find that adding \emph{addressable} capacity
 matters and adding \emph{units} does not: growth that imprints a new unit on each unrepresented pattern reached
@@ -125,9 +128,9 @@ specific enough to be tested.
         doubt detects most severe hidden faults; organisms with a self-model and doubt evolved to survive more
         reliably (6/6 vs.\ 5/9 runs, $p=0.092$). Detection alone did not improve fault survival
         (Section~\ref{sec:part1}).
-  \item \Dem\ \textbf{An audit of the original metacognitive agent.} Its reported perfect survival comes from a
-        hand-written rule layer; removing metacognition while keeping the rules changes little, and removing the
-        rules is catastrophic in the harder regimes (Section~\ref{sec:msra-audit}).
+  \item \Dem\ \textbf{An audit of the original metacognitive agent.} Its reported perfect survival is uninformative
+        (always resting also survives). On hard difficulty, doubt-driven caution---not the hand-written rule
+        layer---carries survival, by trading reward for safety (Section~\ref{sec:msra-audit}).
   \item \Dem\ \textbf{A negative result on dense local learners.} Three dense three-factor learners (V1--V3) did
         not beat a cue-blind baseline; their above-chance accuracy is explained by action priors
         (Section~\ref{sec:v1v3}; V1--V3 numbers are reported from project logs and were not re-run).
@@ -297,6 +300,32 @@ self-model is scored and trained against its own predictions for the externally 
 Section~\ref{sec:anchor}). Each runs on all three difficulties, 3 seeds, 100 online training episodes.
 
 \input{tables/msra_audit.tex}
+
+\paragraph{Findings.} All numbers are from Table~\ref{tab:msra-audit} (last 50 of 100 episodes, 3 seeds).
+\begin{enumerate}[leftmargin=*]
+  \item \Neg\ \textbf{Normal difficulty does not discriminate.} Every variant that rests when resources are low
+        survives 100\pct, including always-rest. A 100\pct\ survival rate in this setting says nothing about
+        metacognition. On expert difficulty nothing survives reliably (full agent $5.3\pm4.2\pct$; always-rest
+        $9.3\pm4.2\pct$). The preprint's comparative claims therefore have no regime in which they reproduce.
+  \item \Dem\ \textbf{The rule layer is not what keeps the agent alive.} On hard difficulty, removing it leaves
+        survival unchanged ($76.0\pm8.7$ vs.\ $76.7\pm2.3\pct$), and the rules alone survive $51.3\pm12.9\pct$, no
+        better than always resting ($54.7\pm2.3\pct$). This corrects the claim in an earlier version of this
+        draft that the agent's survival came from its rules.
+  \item \Dem\ \textbf{Doubt-driven caution carries survival, by not working.} Clamping doubt to zero lowers hard
+        survival from $76.7$ to $56.7\pm6.4\pct$ in the full agent, and from $94.0\pm2.0$ to $8.0\pm3.5\pct$ in
+        the variant without rules and hard-coded economics. The mechanism is blunt: the agent is in caution mode
+        on 53--91\pct\ of steps and works on 3--19\pct\ of them, so reward falls (full agent: 41.6 $\to$ 21.9). The
+        most cautious variant survives best and earns least (94.0\pct, reward 7.3). This is a survival--reward
+        trade-off, not a free improvement; the learned MSRA-L agent (Table~\ref{tab:msral}) reaches 99.5\pct\ on hard
+        with reward 68.5.
+  \item \Dem\ \textbf{The thresholds make caution nearly permanent.} With thresholds of 0.02 (enter) and 0.005
+        (exit) on a mean absolute error over six dimensions, caution is active on 70\pct\ of steps even on normal
+        difficulty; \path{main.py}'s own training loop gives 91.6\pct\ (normal) and 98.2\pct\ (hard, 80\pct\
+        survival over 30 episodes), versus 4.4\pct\ reported in the preprint.
+  \item \Neg\ The actor-critic network, acting on its own, diverges (thousands of NaN policy evaluations per run)
+        and performs like the random policy.
+\end{enumerate}
+The self-graded rows are discussed in Section~\ref{sec:anchor-agent}.
 
 \subsection{A learned agent (MSRA-L)}
 Because the original agent's behaviour is largely hand-coded, a learned variant was built in which every
@@ -523,14 +552,25 @@ the internal score inflates to 153.6 while true performance reaches only 9.0; th
 at $26.2^\circ$ (max $31.7^\circ$, below the $35^\circ$ bound), with $T=18.1$. Across anchor quality, final $T$
 stays above the bound of Proposition~2 (Figure~\ref{fig:mrc}d).
 
-\subsection{Implications for metacognitive agents}
+\subsection{Anchoring in a metacognitive agent}
+\label{sec:anchor-agent}
 \Hyp\ A metacognitive signal is useful only if part of what it is scored against is generated outside the agent's
 own modelling machinery. Surprise-doubt compares predictions to measured bodily change, which the agent cannot
 rewrite; V2's self-model-based learnability did not, and drifted; V3's behavioural learnability is anchored to
-task outcomes. The \emph{self-graded} variants in Table~\ref{tab:msra-audit} test the simplest version: when the
-self-model is graded against its own predictions for the externally measured variables, doubt loses its link to
-shocks. Note that even the original agent's ``actual'' state vector is half self-generated ($c_t,g_t,\delta_t$ are
-the agent's own variables), so its doubt already mixes an anchored and an unanchored component.
+task outcomes.
+
+\Dem\ The self-graded variants of the original agent test the simplest case (Table~\ref{tab:msra-audit}). In them,
+the self-model's error for the externally measured variables (load, resources, degradation) is computed---and the
+self-model trained---against its own prediction instead of the measured value; control still sees the true
+state. The only change is therefore what the evaluator is anchored to. On hard difficulty, the prediction error
+the agent uses stops carrying information about shocks (AUROC 0.51 and 0.46, versus 0.90 for both anchored
+counterparts), caution almost never triggers in the full agent (0.7\pct\ of steps), and survival falls from
+$76.7$ to $48.7\pm11.0\pct$ (full agent) and from $94.0$ to $8.7\pm9.9\pct$ (rule-free variant). This is the
+reference gap of Section~\ref{sec:anchor} in its most direct form: a self-evaluation that is free to agree with
+itself agrees with itself. Two caveats: the manipulation also changes the self-model's training targets, so the
+collapse combines an uninformative doubt signal with a self-model that never learns the measured dynamics; and
+the original agent's ``actual'' state vector is itself half self-generated ($c_t,g_t,\delta_t$ are the agent's own
+variables), so even its anchored doubt mixes an anchored and an unanchored component.
 
 %=====================================================================
 \section{Part III --- Developmental Benchmark B}
@@ -847,6 +887,9 @@ Earlier claim & Problem & Status here\\
 MSRA: 100\pct\ survival vs.\ 67\pct\ (MBRL), 73\pct\ (PPO), 81\pct\ (fixed $\beta$), 86\pct\ (PPO-Lagrangian); ablation and
 sensitivity tables; $t(29)=15.32$, Cohen's $d=2.41$ & No baseline, ablation or statistics code or output exists
 in any branch. & Withdrawn. Replaced by the re-executed audit (Table~\ref{tab:msra-audit}). \\
+MSRA's 100\pct\ survival demonstrates the value of metacognition & On normal difficulty always-rest also survives
+100\pct; on expert the agent survives 5.3\pct. & Uninformative; the discriminating regime (hard) shows doubt helps
+survival at a large reward cost. \\
 MSRA switches to caution ``without explicit hard-coding'' & \path{select_action} applies hand-written
 thresholds before metacognition; imagination is filtered by hard-coded environment costs. & False; corrected
 (Section~\ref{sec:msra-audit}). \\
@@ -894,8 +937,10 @@ units on unrepresented patterns matched a fixed network five times larger in ave
 triggered growth of randomly wired units gave no benefit (3 seeds, paired lives; single evolved runs show the same
 ordering at a higher level); (iii) the growth decisions in that result are driven by
 novelty, not by metacognitive estimates; a per-unit surprise signal becomes useful for repairing remapped
-associations when errors are ambiguous; and (iv) the agent's behavioural learning-progress signal tracks past
-progress but does not forecast future progress.}
+associations when errors are ambiguous; (iv) the agent's behavioural learning-progress signal tracks past
+progress but does not forecast future progress; and (v) a doubt signal is useful only while it is anchored to
+measured outcomes: graded against the agent's own predictions, it loses its information about disturbances and the
+agent's survival collapses.}
 
 \paragraph{Level B --- within reach of one or two experiments.}
 \emph{An organism can forecast its own near-future learning progress from local signals (E8), and structural
@@ -982,7 +1027,9 @@ The evidence supports three narrower statements. Self-prediction error is useful
 one's own body, though knowing is not the same as acting on it. When a lifetime learner grows, new capacity helps
 only if it is addressable---imprinted on what the learner currently cannot represent---and in our setting a simple
 novelty gate suffices to decide when. And the agent's estimate of its own learning progress is, for now, a
-summary of the past rather than a forecast. The stronger claim, that an agent's forecast of its own inability to
+summary of the past rather than a forecast. Self-evaluation must be anchored: the same doubt signal that keeps an agent alive when it is scored against
+measured outcomes becomes uninformative, and the agent fragile, when it is scored against the agent's own
+predictions. The stronger claim, that an agent's forecast of its own inability to
 learn can \emph{cause} useful structural development, remains an open hypothesis with a concrete, small set of
 experiments that would test it.
 
@@ -1023,7 +1070,7 @@ Number & Source \\
 Fisher $p=0.092$ & recomputed: \texttt{scipy.stats.fisher\_exact([[6,0],[5,4]], 'greater')} \\
 Ceiling 100.0 / 72.4 / 86.2\pct & \texttt{survival\_ceiling.py --faults severe}, re-run \\
 MSRA-L table & \path{results/summary.md} (research branch) \\
-\texttt{main.py} audit & \path{paper/results/raw/*.json}, \path{paper/results/msra_audit.json} \\
+\texttt{main.py} audit & \path{paper/results/msra_audit.json}; per-run records in \path{paper/results/msra_audit_raw.tar.gz} \\
 Parameter counts 11{,}462 / 14{,}790 & counted from \texttt{main.py} modules \\
 V1--V3 numbers & project research log (draft of September 2026); not re-run \\
 V4 standard table & \path{paper/results/v4_standard/hand_comparison.json}, \path{v4_standard.txt} \\
