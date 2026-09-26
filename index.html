@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MicroLife — A Brain That Builds Itself</title>
+<meta name="description" content="Educational artificial-life visualization inspired by the Developmental Self-Model research program.">
+<style>
+:root{
+  --bg:#071016;
+  --panel:#0e1a22;
+  --card:#13232e;
+  --card2:#172b37;
+  --text:#eef6fb;
+  --muted:#94a8b5;
+  --border:#29414f;
+  --food:#53d58c;
+  --danger:#ff6f78;
+  --brain:#70a9ff;
+  --novel:#e7b85f;
+  --accent:#8db3ff;
+  --accent-bg:#264d7f;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:radial-gradient(circle at 50% -20%,#123042 0,#071016 42%,#050b0f 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{min-height:100vh}
+button,select{font:inherit;color:inherit}
+button{cursor:pointer}
+button:disabled,select:disabled{opacity:.55;cursor:not-allowed}
+.app{width:min(1440px,100%);margin:0 auto;padding:18px}
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
+.brand h1{font-size:clamp(20px,3vw,32px);line-height:1.05;margin:0}
+.brand p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.research-tag{border:1px solid var(--border);background:rgba(19,35,46,.7);backdrop-filter:blur(10px);border-radius:999px;padding:7px 11px;font-size:11px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:minmax(0,1.58fr) minmax(285px,.72fr);gap:14px}
+.card{border:1px solid var(--border);background:linear-gradient(180deg,rgba(19,35,46,.96),rgba(12,25,33,.96));border-radius:18px}
+.world{position:relative;overflow:hidden;border-radius:22px;border:1px solid var(--border);background:var(--panel);box-shadow:0 30px 80px rgba(0,0,0,.23)}
+canvas{display:block;width:100%;height:auto;aspect-ratio:16/10}
+.hud{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;pointer-events:none}
+.hudgroup{display:flex;gap:6px;flex-wrap:wrap}
+.pill{border:1px solid rgba(92,126,146,.45);background:rgba(7,16,22,.72);backdrop-filter:blur(10px);border-radius:999px;padding:7px 10px;font-size:11px;box-shadow:0 4px 20px rgba(0,0,0,.16)}
+.intro{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(5,13,18,.56);backdrop-filter:blur(6px);transition:opacity .35s ease}
+.intro.hide{opacity:0;pointer-events:none}
+.introbox{width:min(470px,94%);text-align:center;border:1px solid var(--border);background:rgba(12,28,37,.94);border-radius:24px;padding:26px;box-shadow:0 26px 70px rgba(0,0,0,.35)}
+.amoebaIcon{font-size:64px;line-height:1;margin-bottom:10px;filter:drop-shadow(0 0 22px rgba(112,169,255,.32))}
+.introbox h2{margin:0;font-size:26px}
+.introbox p{font-size:13px;line-height:1.55;color:var(--muted)}
+.primary{background:linear-gradient(180deg,#3c6da5,#274c78);border:1px solid #5b8bc0;font-weight:750;box-shadow:inset 0 1px rgba(255,255,255,.08),0 8px 30px rgba(26,82,139,.18)}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+button,select{min-height:44px;border:1px solid var(--border);background:var(--card);border-radius:12px;padding:0 14px}
+button:hover:not(:disabled){border-color:#4f6b7b;background:#18303d}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.stat{padding:10px 7px;text-align:center;border:1px solid var(--border);background:rgba(19,35,46,.92);border-radius:13px}
+.stat small{display:block;color:var(--muted);font-size:10px;margin-bottom:3px}
+.stat strong{font-size:14px}
+.explain{margin-top:10px;padding:14px 15px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(19,35,46,.96),rgba(11,24,31,.96));border-radius:16px;min-height:112px}
+.eyebrow{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.eventTitle{font-size:18px;font-weight:800;margin-top:3px}
+.eventText{margin-top:6px;color:var(--muted);line-height:1.45;font-size:13px}
+.flow{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap;margin-top:11px;font-size:10px;color:var(--muted)}
+.flow b{color:var(--text);background:#0c1820;border:1px solid #223846;border-radius:7px;padding:5px 7px}
+.side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.section{padding:14px}
+.title{font-weight:800}
+.sub{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+.brain{margin-top:9px;background:linear-gradient(180deg,#0a151c,#0c1921);border:1px solid #203743;border-radius:14px;padding:8px;overflow:hidden}
+.brain svg{display:block;width:100%;height:auto}
+.node{transition:r .25s ease,opacity .25s ease}
+.newNode{animation:growNode .7s ease}
+.alertNode{animation:pulseNode .55s ease infinite alternate}
+.sensor{display:grid;grid-template-columns:78px 1fr 36px;gap:7px;align-items:center;font-size:10px;margin-top:8px}
+.bar{height:7px;border-radius:999px;background:#09151c;overflow:hidden;border:1px solid #1e3440}
+.bar span{display:block;height:100%;border-radius:999px;transition:width .25s ease}
+.decision{margin-top:10px;padding:10px;border-radius:11px;background:#0b1921;border:1px solid #1e3440;font-size:11px;line-height:1.45}
+.timeline{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.step{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:center;color:var(--muted);font-size:11px;opacity:.48;transition:opacity .25s ease,color .25s ease}
+.step.done,.step.now{opacity:1;color:var(--text)}
+.step.now{font-weight:750}
+.bubble{width:20px;height:20px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px;background:#0b1921}
+.bigidea{padding:12px;border-radius:12px;background:#0b1921;border:1px solid #1e3440;font-size:12px;line-height:1.5;margin-top:9px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;padding:9px 1px 0;color:var(--muted);font-size:10px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px}
+.flash{animation:flash .5s ease}
+.footer{padding:18px 2px 2px;color:#6f8694;font-size:10px;line-height:1.5}
+@keyframes growNode{0%{transform:scale(.05);transform-origin:center}65%{transform:scale(1.4);transform-origin:center}100%{transform:scale(1);transform-origin:center}}
+@keyframes pulseNode{from{opacity:.45}to{opacity:1}}
+@keyframes flash{50%{transform:scale(1.015)}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.side .card:last-child{grid-column:1/-1}}
+@media(max-width:620px){.app{padding:10px}.topbar{flex-direction:column}.stats{grid-template-columns:repeat(2,1fr)}.side{display:flex}.research-tag{display:none}.sensor{grid-template-columns:72px 1fr 33px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="topbar">
+    <div class="brand">
+      <h1>MicroLife</h1>
+      <p>Watch a tiny organism discover its world — and develop the learning machinery it needs.</p>
+    </div>
+    <div class="research-tag">Developmental Self-Model • educational visualization</div>
+  </div>
+
+  <div class="layout">
+    <section>
+      <div class="world" id="worldWrap">
+        <canvas id="lifeCanvas" width="960" height="600" aria-label="Microscopic world containing a learning amoeba"></canvas>
+        <div class="hud">
+          <div class="hudgroup">
+            <div class="pill">🧬 Age <strong id="hudAge">0</strong></div>
+            <div class="pill">⚡ <strong id="hudEnergy">70</strong></div>
+            <div class="pill">❤️ <strong id="hudHealth">100</strong></div>
+          </div>
+          <div class="hudgroup"><div class="pill">🧠 <strong id="hudBrain">6</strong> units</div></div>
+        </div>
+
+        <div class="intro" id="intro">
+          <div class="introbox">
+            <div class="amoebaIcon">🦠</div>
+            <h2>The Developing Organism</h2>
+            <p>It is born with a tiny brain and no knowledge of food or danger.</p>
+            <p>Press Start and simply watch: exploration → learning → capacity pressure → brain growth → environmental change → surprise → repair.</p>
+            <button id="startLife" type="button" class="primary">▶ Start Life</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <span><i id="foodLegend"></i> nutrient</span>
+        <span><i id="toxinLegend"></i> danger</span>
+        <span>🦠 organism</span>
+        <span>faint circle = sensory range</span>
+      </div>
+
+      <div class="controls">
+        <button id="pauseBtn" disabled type="button">⏸ Pause</button>
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px">Speed
+          <select id="speedSel" disabled aria-label="Simulation speed">
+            <option value="1">1×</option>
+            <option value="2">2×</option>
+            <option value="4">4×</option>
+          </select>
+        </label>
+        <button id="restartBtn" type="button">↻ New Life</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><small>Decision accuracy</small><strong id="accuracy">50%</strong></div>
+        <div class="stat"><small>Patterns learned</small><strong id="learnedCount">0</strong></div>
+        <div class="stat"><small>Brain size</small><strong id="brainCount">6</strong></div>
+        <div class="stat"><small>Old memory retained</small><strong id="retention">—</strong></div>
+      </div>
+
+      <div class="explain" id="explainBox" aria-live="polite">
+        <div class="eyebrow">What is happening?</div>
+        <div class="eventTitle" id="eventTitle">Waiting to be born</div>
+        <div class="eventText" id="eventText">Press Start Life. The organism controls itself. You only watch.</div>
+        <div class="flow"><b>SENSE</b><span>→</span><b>PREDICT</b><span>→</span><b>ACT</b><span>→</span><b>OUTCOME</b><span>→</span><b>LEARN</b></div>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div class="card section">
+        <div class="title">Inside the brain</div>
+        <div class="sub">Useful experiences gradually acquire their own internal address.</div>
+        <div class="brain"><svg id="brainSvg" viewBox="0 0 320 215" aria-label="Developing neural network"></svg></div>
+        <div class="sub" id="brainCaption" style="text-align:center;margin-top:7px">6 inherited units • mostly unused</div>
+      </div>
+
+      <div class="card section">
+        <div class="title">What does it sense?</div>
+        <div class="sub">Internally it never sees labels such as “food” or “poison”.</div>
+        <div class="sensor"><span>Chemical A</span><div class="bar"><span id="s0"></span></div><strong id="sv0">0.00</strong></div>
+        <div class="sensor"><span>Chemical B</span><div class="bar"><span id="s1"></span></div><strong id="sv1">0.00</strong></div>
+        <div class="sensor"><span>Motion</span><div class="bar"><span id="s2"></span></div><strong id="sv2">0.00</strong></div>
+        <div class="sensor"><span>Light</span><div class="bar"><span id="s3"></span></div><strong id="sv3">0.00</strong></div>
+      </div>
+
+      <div class="card section">
+        <div class="title">Self-model</div>
+        <div class="sub">Internal evidence about its own learning process.</div>
+        <div class="sensor"><span>Novelty</span><div class="bar"><span id="novBar"></span></div><strong id="novTxt">0%</strong></div>
+        <div class="sensor"><span>Surprise</span><div class="bar"><span id="surBar"></span></div><strong id="surTxt">0%</strong></div>
+        <div class="sensor"><span>Learnability</span><div class="bar"><span id="leaBar"></span></div><strong id="leaTxt">0%</strong></div>
+        <div class="decision" id="decision">No structural decision yet.</div>
+      </div>
+
+      <div class="card section">
+        <div class="title">One lifetime</div>
+        <div class="timeline">
+          <div class="step now" id="st0"><span class="bubble">1</span><span>Born with a tiny random brain</span></div>
+          <div class="step" id="st1"><span class="bubble">2</span><span>Discovers food and danger</span></div>
+          <div class="step" id="st2"><span class="bubble">3</span><span>Runs out of clean capacity</span></div>
+          <div class="step" id="st3"><span class="bubble">4</span><span>Grows useful new structure</span></div>
+          <div class="step" id="st4"><span class="bubble">5</span><span>World changes unexpectedly</span></div>
+          <div class="step" id="st5"><span class="bubble">6</span><span>Finds and repairs a broken memory</span></div>
+          <div class="step" id="st6"><span class="bubble">7</span><span>Matures without forgetting everything</span></div>
+        </div>
+      </div>
+
+      <div class="card section">
+        <div class="title">The idea</div>
+        <div class="bigidea" id="ideaText">Normal learning asks: <strong>“How should I change?”</strong><br><br>This research adds: <strong>“How can I know when the machinery doing the learning is itself not enough?”</strong></div>
+        <div class="sub" style="margin-top:8px">Conceptual visualization inspired by the Developmental Self-Model research program; not experimental evidence.</div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="footer">
+    MicroLife is a standalone educational visualization. No network connection, framework or build step is required.
+  </div>
+</main>
+
+<script>
+(()=>{
+  "use strict";
+
+  const $=s=>document.querySelector(s);
+  const canvas=$("#lifeCanvas");
+  const ctx=canvas.getContext("2d");
+  const W=canvas.width,H=canvas.height;
+
+  const CSS=getComputedStyle(document.documentElement);
+  const color=(name,fallback)=>CSS.getPropertyValue(name).trim()||fallback;
+  const C={
+    text:color("--text","#eef6fb"),muted:color("--muted","#94a8b5"),border:color("--border","#29414f"),
+    panel:color("--panel","#0e1a22"),card:color("--card","#13232e"),food:color("--food","#53d58c"),
+    danger:color("--danger","#ff6f78"),brain:color("--brain","#70a9ff"),novel:color("--novel","#e7b85f")
+  };
+
+  $("#foodLegend").style.background=C.food;
+  $("#toxinLegend").style.background=C.danger;
+  ["s0","s1","s2","s3"].forEach(id=>$("#"+id).style.background=C.brain);
+  $("#novBar").style.background=C.novel;
+  $("#surBar").style.background=C.danger;
+  $("#leaBar").style.background=C.food;
+
+  let seed=918273,raf=0,last=0,accum=0,running=false,paused=false,speed=1,worldTime=0;
+  let organism,objects,slots,history,novelCounts,patterns,currentTarget,lastMajor="",stage=0;
+  let reversal=false,noiseOn=false,repairDone=false,growthCount=0,decisionSamples=[];
+
+  const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+
+  function makePatterns(){
+    return {
+      f1:{reward:1,s:[.86,.15,.10,.75]}, t1:{reward:-1,s:[.78,.22,.12,.69]},
+      f2:{reward:1,s:[.22,.82,.18,.53]}, t2:{reward:-1,s:[.31,.76,.15,.48]},
+      f3:{reward:1,s:[.60,.42,.21,.82]}, t3:{reward:-1,s:[.58,.46,.25,.78]},
+      f4:{reward:1,s:[.18,.57,.32,.27]}, t4:{reward:-1,s:[.21,.61,.37,.31]}
+    };
+  }
+
+  function resetState(){
+    seed=918273;worldTime=0;stage=0;reversal=false;noiseOn=false;repairDone=false;growthCount=0;lastMajor="";
+    patterns=makePatterns();history=[];decisionSamples=[];novelCounts={};currentTarget=null;
+    organism={x:W*.5,y:H*.52,vx:0,vy:0,energy:70,health:100,age:0,glow:0,damage:0};
+    slots=[];
+    for(let i=0;i<6;i++)slots.push({id:i+1,key:null,action:null,conf:0,surprise:0,utility:0,just:false,broken:false});
+    objects=[];
+    spawnSet(["f1","t1","f2","t2"],18);
+    setMajor("Birth","The organism has six neural units, random behavior, and no idea which sensory patterns are good or dangerous.","First it must learn from experience.");
+    updateStage(0);updateUI();draw();
+  }
+
+  function spawnSet(keys,count){
+    for(let i=0;i<count;i++)spawnObject(keys[Math.floor(rnd()*keys.length)]);
+  }
+
+  function spawnObject(key,x=null,y=null){
+    objects.push({
+      key,
+      x:x??40+rnd()*(W-80),
+      y:y??55+rnd()*(H-95),
+      r:7+rnd()*4,
+      pulse:rnd()*Math.PI*2,
+      vx:(rnd()-.5)*.18,
+      vy:(rnd()-.5)*.18
+    });
+  }
+
+  function allowedKeys(){
+    if(organism.age<13)return ["f1","t1","f2","t2"];
+    if(organism.age<25)return ["f1","t1","f2","t2","f3","t3"];
+    return ["f1","t1","f2","t2","f3","t3","f4","t4"];
+  }
+
+  function owner(key){return slots.find(s=>s.key===key);}
+  function freeSlot(){return slots.find(s=>!s.key);}
+  function correctAction(key){return patterns[key].reward>0?"approach":"avoid";}
+
+  function setMajor(title,text,decision){
+    if(title===lastMajor)return;
+    lastMajor=title;
+    $("#eventTitle").textContent=title;
+    $("#eventText").textContent=text;
+    $("#decision").textContent=decision||"";
+    const box=$("#explainBox");
+    box.classList.remove("flash");
+    void box.offsetWidth;
+    box.classList.add("flash");
+  }
+
+  function updateStage(n){
+    stage=Math.max(stage,n);
+    for(let i=0;i<7;i++){
+      const el=$("#st"+i);
+      el.classList.toggle("done",i<stage);
+      el.classList.toggle("now",i===stage);
+    }
+  }
+
+  function sensoryFor(obj){
+    if(!obj)return [0,0,0,0];
+    const base=patterns[obj.key].s;
+    return base.map((v,i)=>clamp(v+(rnd()-.5)*.04+(i===2?Math.min(.14,Math.abs(obj.vx)+Math.abs(obj.vy)):0),0,1));
+  }
+
+  function chooseTarget(){
+    let best=null,score=-1e9;
+    for(const o of objects){
+      const d=distance(organism,o);
+      if(d>235)continue;
+      const sl=owner(o.key);
+      const action=sl?.action;
+      let val=0;
+      if(action==="approach")val=330-d+sl.conf*95;
+      else if(action==="avoid")val=-160-d;
+      else val=115-d+rnd()*100;
+      if(val>score){score=val;best=o;}
+    }
+    return best;
+  }
+
+  function moveOrganism(dt){
+    currentTarget=chooseTarget();
+    let ax=(rnd()-.5)*.12,ay=(rnd()-.5)*.12;
+
+    if(currentTarget){
+      const dx=currentTarget.x-organism.x;
+      const dy=currentTarget.y-organism.y;
+      const d=Math.max(1,Math.hypot(dx,dy));
+      const sl=owner(currentTarget.key);
+      const action=sl?.action||((rnd()<.62)?"approach":"avoid");
+      const sign=action==="approach"?1:-1;
+      ax+=sign*dx/d*.34;
+      ay+=sign*dy/d*.34;
+      decisionSamples.push(action===correctAction(currentTarget.key)?1:0);
+      if(decisionSamples.length>120)decisionSamples.shift();
+    }
+
+    organism.vx=organism.vx*.94+ax;
+    organism.vy=organism.vy*.94+ay;
+
+    const max=.92+Math.min(.28,organism.energy/300);
+    const mag=Math.hypot(organism.vx,organism.vy);
+    if(mag>max){
+      organism.vx=organism.vx/mag*max;
+      organism.vy=organism.vy/mag*max;
+    }
+
+    organism.x+=organism.vx*dt*9;
+    organism.y+=organism.vy*dt*9;
+
+    if(organism.x<28){organism.x=28;organism.vx=Math.abs(organism.vx);}
+    if(organism.x>W-28){organism.x=W-28;organism.vx=-Math.abs(organism.vx);}
+    if(organism.y<42){organism.y=42;organism.vy=Math.abs(organism.vy);}
+    if(organism.y>H-28){organism.y=H-28;organism.vy=-Math.abs(organism.vy);}
+
+    organism.energy=clamp(organism.energy-.003*dt,15,100);
+    organism.glow=Math.max(0,organism.glow-dt*.015);
+    organism.damage=Math.max(0,organism.damage-dt*.02);
+  }
+
+  function collisionLearning(obj){
+    const actual=patterns[obj.key].reward;
+    const noisy=noiseOn&&rnd()<.12;
+    const perceived=noisy?-actual:actual;
+    let sl=owner(obj.key);
+
+    if(!sl){
+      const free=freeSlot();
+      if(free){
+        free.key=obj.key;
+        free.action=perceived>0?"approach":"avoid";
+        free.conf=.32;
+        free.utility=.4;
+        sl=free;
+        setMajor(
+          "A memory is forming",
+          "The organism touched something and experienced an outcome. One unused neural unit becomes associated with that sensory pattern.",
+          "Ordinary local learning is enough while unused capacity exists."
+        );
+        updateStage(1);
+      }else{
+        novelCounts[obj.key]=(novelCounts[obj.key]||0)+1;
+        if(novelCounts[obj.key]>=2){
+          const n={id:slots.length+1,key:obj.key,action:perceived>0?"approach":"avoid",conf:.38,surprise:0,utility:.5,just:true,broken:false};
+          slots.push(n);
+          sl=n;
+          growthCount++;
+          organism.energy=clamp(organism.energy-4,15,100);
+          setMajor(
+            "🌱 The brain grows",
+            "Every old slot is occupied, yet this sensory pattern still needs a reliable internal address. A new unit grows and is imprinted on the experience that caused the problem.",
+            "GROW: add useful capacity, not a random neuron."
+          );
+          updateStage(3);
+          setTimeout(()=>{n.just=false;renderBrain();},900);
+        }
+      }
+    }else{
+      const expectedGood=sl.action==="approach";
+      const outcomeGood=perceived>0;
+      const error=expectedGood!==outcomeGood;
+
+      if(!error){
+        sl.conf=clamp(sl.conf+.08,0,1);
+        sl.surprise*=.62;
+        sl.utility=clamp(sl.utility+.08,0,2);
+      }else{
+        sl.surprise=clamp(sl.surprise*.72+sl.conf*.34,0,1);
+        sl.conf=clamp(sl.conf-.025,.18,1);
+        sl.utility=clamp(sl.utility-.03,0,2);
+
+        if(reversal&&obj.key==="f1"&&sl.surprise>.72){
+          sl.broken=true;
+          sl.action=perceived>0?"approach":"avoid";
+          sl.conf=.28;
+          sl.surprise=.12;
+          repairDone=true;
+          setMajor(
+            "🔧 A specific memory is repaired",
+            "The old slot was highly confident and repeatedly wrong. Instead of resetting the whole brain, the organism reopens only this address and learns the new relationship.",
+            "REPAIR: target the broken slot while leaving unrelated memories intact."
+          );
+          updateStage(5);
+        }else if(noisy&&sl.surprise<.6){
+          setMajor(
+            "One error is not enough",
+            "Feedback can occasionally be noisy. Surprise rises, but one unlucky event does not immediately destroy a useful memory.",
+            "WAIT: distinguish noise from persistent structural failure."
+          );
+        }
+      }
+    }
+
+    if(actual>0){
+      organism.energy=clamp(organism.energy+10,0,100);
+      organism.glow=1;
+    }else{
+      organism.health=clamp(organism.health-7,20,100);
+      organism.energy=clamp(organism.energy-5,15,100);
+      organism.damage=1;
+    }
+
+    history.push({key:obj.key,actual,noisy});
+    if(history.length>100)history.shift();
+  }
+
+  function processCollisions(){
+    for(let i=objects.length-1;i>=0;i--){
+      const o=objects[i];
+      if(distance(organism,o)<24+o.r){
+        collisionLearning(o);
+        objects.splice(i,1);
+        const keys=allowedKeys();
+        spawnObject(keys[Math.floor(rnd()*keys.length)]);
+      }
+    }
+  }
+
+  function worldDevelopment(){
+    if(organism.age>=13&&stage<2){
+      spawnSet(["f3","t3"],8);
+      setMajor(
+        "The world becomes richer",
+        "New sensory patterns appear. The tiny inherited brain begins running out of clean internal addresses.",
+        "Watch for a capacity bottleneck."
+      );
+      updateStage(2);
+    }
+
+    if(organism.age>=25&&growthCount===0)spawnSet(["f4","t4"],10);
+
+    if(organism.age>=32&&!noiseOn){
+      noiseOn=true;
+      setMajor(
+        "The world becomes noisy",
+        "Sometimes feedback is misleading. A single error must not automatically erase a useful memory.",
+        "Surprise should accumulate only when confident errors persist."
+      );
+    }
+
+    if(organism.age>=43&&!reversal){
+      reversal=true;
+      patterns.f1.reward=-1;
+      for(let i=0;i<6;i++)spawnObject("f1",100+rnd()*(W-200),90+rnd()*(H-180));
+      setMajor(
+        "⚠️ Environmental reversal",
+        "A familiar sensory pattern that used to predict food now causes damage. Old knowledge becomes confidently wrong.",
+        "The self-model must decide whether this is noise or a genuinely broken memory."
+      );
+      updateStage(4);
+    }
+
+    if(organism.age>=62&&repairDone&&stage<6){
+      setMajor(
+        "A mature developmental brain",
+        "The organism started small, grew only when representation was insufficient, and repaired one changed relationship without erasing everything else.",
+        "Its learning machinery changed during its own lifetime."
+      );
+      updateStage(6);
+    }
+  }
+
+  function logicStep(dt){
+    organism.age+=dt*.035;
+    moveOrganism(dt);
+    processCollisions();
+    worldDevelopment();
+
+    for(const o of objects){
+      o.x+=o.vx*dt*2;
+      o.y+=o.vy*dt*2;
+      o.pulse+=dt*.03;
+      if(o.x<20||o.x>W-20)o.vx*=-1;
+      if(o.y<35||o.y>H-20)o.vy*=-1;
+    }
+
+    if(organism.age>70&&!paused){
+      paused=true;
+      setMajor(
+        "Life complete",
+        "You watched the complete cycle: exploration → learning → capacity pressure → useful growth → reversal → surprise → selective repair.",
+        "The key idea is learning when the learning machinery itself needs to change."
+      );
+      $("#pauseBtn").textContent="▶ Resume";
+    }
+    updateUI();
+  }
+
+  function sensorState(){return sensoryFor(currentTarget);}
+
+  function metrics(){
+    const accuracy=decisionSamples.length?decisionSamples.reduce((a,b)=>a+b,0)/decisionSamples.length:.5;
+    const learned=slots.filter(s=>s.key).length;
+    const novelty=currentTarget&&!owner(currentTarget.key)?1:.05;
+    const surprise=currentTarget&&owner(currentTarget.key)?owner(currentTarget.key).surprise:0;
+    const recent=decisionSamples.slice(-20);
+    const older=decisionSamples.slice(-60,-20);
+    const r=recent.length?recent.reduce((a,b)=>a+b,0)/recent.length:.5;
+    const o=older.length?older.reduce((a,b)=>a+b,0)/older.length:.5;
+    return {accuracy,learned,novelty,surprise,learnability:clamp(.5+(r-o),0,1)};
+  }
+
+  function updateUI(){
+    const m=metrics();
+    $("#hudAge").textContent=Math.floor(organism.age);
+    $("#hudEnergy").textContent=Math.round(organism.energy);
+    $("#hudHealth").textContent=Math.round(organism.health);
+    $("#hudBrain").textContent=slots.length;
+    $("#accuracy").textContent=Math.round(m.accuracy*100)+"%";
+    $("#learnedCount").textContent=m.learned;
+    $("#brainCount").textContent=slots.length;
+
+    const retained=slots.filter(s=>s.key&&s.key!=="f1");
+    $("#retention").textContent=reversal
+      ? (retained.length?Math.round(retained.filter(s=>s.conf>.35).length/retained.length*100)+"%":"—")
+      : "—";
+
+    const sv=sensorState();
+    sv.forEach((v,i)=>{
+      $("#s"+i).style.width=Math.round(v*100)+"%";
+      $("#sv"+i).textContent=v.toFixed(2);
+    });
+
+    $("#novBar").style.width=Math.round(m.novelty*100)+"%";
+    $("#novTxt").textContent=Math.round(m.novelty*100)+"%";
+    $("#surBar").style.width=Math.round(m.surprise*100)+"%";
+    $("#surTxt").textContent=Math.round(m.surprise*100)+"%";
+    $("#leaBar").style.width=Math.round(m.learnability*100)+"%";
+    $("#leaTxt").textContent=Math.round(m.learnability*100)+"%";
+
+    if(stage>=6){
+      $("#ideaText").innerHTML='Most learning asks: <strong>“How should I change my parameters?”</strong><br><br>This organism also asks: <strong>“Is my current learning machinery itself insufficient or broken?”</strong><br><br>Then it can <strong>grow or repair the specific capacity it needs.</strong>';
+    }
+
+    renderBrain();
+  }
+
+  function renderBrain(){
+    const svg=$("#brainSvg");
+    let out="";
+
+    out+='<text x="12" y="18" font-size="10" fill="'+C.muted+'">SENSORY INPUT</text>';
+    out+='<text x="246" y="18" font-size="10" fill="'+C.muted+'">ACTION</text>';
+    out+='<circle cx="28" cy="96" r="15" fill="'+C.card+'" stroke="'+C.border+'"/>';
+    out+='<text x="28" y="100" text-anchor="middle" font-size="9" fill="'+C.text+'">sense</text>';
+    out+='<circle cx="286" cy="72" r="16" fill="'+C.card+'" stroke="'+C.border+'"/>';
+    out+='<text x="286" y="76" text-anchor="middle" font-size="8" fill="'+C.text+'">GO</text>';
+    out+='<circle cx="286" cy="132" r="16" fill="'+C.card+'" stroke="'+C.border+'"/>';
+    out+='<text x="286" y="136" text-anchor="middle" font-size="8" fill="'+C.text+'">AVOID</text>';
+
+    const positions=[];
+    slots.forEach((slot,i)=>{
+      const column=i%4;
+      const row=Math.floor(i/4);
+      positions.push({x:88+column*44,y:56+row*48});
+    });
+
+    slots.forEach((slot,i)=>{
+      const p=positions[i];
+      out+='<line x1="43" y1="96" x2="'+(p.x-13)+'" y2="'+p.y+'" stroke="'+C.border+'" stroke-width="1" opacity=".45"/>';
+      if(slot.key){
+        const actionY=slot.action==="approach"?72:132;
+        const edgeColor=slot.action==="approach"?C.food:C.danger;
+        out+='<line x1="'+(p.x+13)+'" y1="'+p.y+'" x2="270" y2="'+actionY+'" stroke="'+edgeColor+'" stroke-width="'+(1+slot.conf*2)+'" opacity="'+(.3+slot.conf*.6)+'"/>';
+      }
+    });
+
+    slots.forEach((slot,i)=>{
+      const p=positions[i];
+      const isActive=Boolean(currentTarget&&slot.key===currentTarget.key);
+      const fill=slot.broken?C.danger:(slot.key?C.brain:C.card);
+      const cls=(slot.just?" newNode":"")+(isActive&&slot.surprise>.55?" alertNode":"");
+      out+='<circle class="node'+cls+'" cx="'+p.x+'" cy="'+p.y+'" r="'+(isActive?14:12)+'" fill="'+fill+'" stroke="'+(isActive?C.text:C.border)+'" stroke-width="'+(isActive?2:1)+'"/>';
+      out+='<text x="'+p.x+'" y="'+(p.y+3)+'" text-anchor="middle" font-size="8" fill="'+C.text+'">N'+slot.id+'</text>';
+    });
+
+    svg.innerHTML=out;
+    const used=slots.filter(s=>s.key).length;
+    $("#brainCaption").textContent=slots.length+" units • "+used+" specialized • "+Math.max(0,slots.length-used)+" free";
+  }
+
+  function drawBackground(){
+    ctx.fillStyle=C.panel;
+    ctx.fillRect(0,0,W,H);
+
+    const gradient=ctx.createRadialGradient(W*.42,H*.42,10,W*.5,H*.5,W*.65);
+    gradient.addColorStop(0,"rgba(50,100,125,.10)");
+    gradient.addColorStop(1,"rgba(0,0,0,0)");
+    ctx.fillStyle=gradient;
+    ctx.fillRect(0,0,W,H);
+
+    ctx.save();
+    ctx.globalAlpha=.11;
+    for(let i=0;i<34;i++){
+      const x=(i*137+worldTime*.18)%W;
+      const y=(i*83+Math.sin(i*1.7)*92+H)%H;
+      const r=1.5+(i%4);
+      ctx.beginPath();
+      ctx.arc(x,y,r,0,Math.PI*2);
+      ctx.fillStyle=C.muted;
+      ctx.fill();
+    }
+    ctx.restore();
+
+    ctx.save();
+    ctx.strokeStyle=C.border;
+    ctx.globalAlpha=.28;
+    ctx.lineWidth=2;
+    ctx.beginPath();
+    ctx.ellipse(W/2,H/2,W*.49,H*.47,0,0,Math.PI*2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawObjects(){
+    for(const o of objects){
+      const food=patterns[o.key].reward>0;
+      ctx.save();
+      ctx.translate(o.x,o.y);
+      const pulse=1+Math.sin(o.pulse)*.08;
+      ctx.scale(pulse,pulse);
+
+      if(food){
+        ctx.shadowBlur=15;
+        ctx.shadowColor=C.food;
+        ctx.fillStyle=C.food;
+        ctx.beginPath();
+        ctx.arc(0,0,o.r,0,Math.PI*2);
+        ctx.fill();
+
+        ctx.globalAlpha=.35;
+        ctx.fillStyle=C.text;
+        ctx.beginPath();
+        ctx.arc(-o.r*.28,-o.r*.28,Math.max(1.5,o.r*.23),0,Math.PI*2);
+        ctx.fill();
+      }else{
+        ctx.shadowBlur=11;
+        ctx.shadowColor=C.danger;
+        ctx.fillStyle=C.danger;
+        ctx.beginPath();
+        const spikes=7;
+        for(let i=0;i<spikes*2;i++){
+          const a=i*Math.PI/spikes;
+          const r=i%2?o.r*.75:o.r*1.35;
+          const x=Math.cos(a)*r,y=Math.sin(a)*r;
+          if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+        }
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+
+  function drawAmoeba(){
+    const t=worldTime*.035;
+    const ang=Math.atan2(organism.vy,organism.vx);
+
+    ctx.save();
+    ctx.translate(organism.x,organism.y);
+    ctx.rotate(ang);
+    ctx.shadowBlur=organism.glow?30:17;
+    ctx.shadowColor=organism.damage?C.danger:(organism.glow?C.food:C.brain);
+    ctx.fillStyle=organism.damage?C.danger:C.brain;
+    ctx.globalAlpha=.92;
+
+    ctx.beginPath();
+    const points=22;
+    for(let i=0;i<points;i++){
+      const a=i/points*Math.PI*2;
+      let r=22+Math.sin(a*3+t)*3+Math.sin(a*5-t*.7)*2.2;
+      if(Math.cos(a)>.55)r+=7+Math.max(0,Math.hypot(organism.vx,organism.vy))*3;
+      const x=Math.cos(a)*r,y=Math.sin(a)*r;
+      if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.shadowBlur=0;
+    ctx.globalAlpha=.55;
+    ctx.fillStyle="#09151c";
+    ctx.beginPath();
+    ctx.arc(-4,2,9,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.globalAlpha=.75;
+    ctx.strokeStyle="#b7d5ff";
+    ctx.lineWidth=1;
+    for(let i=0;i<Math.min(8,slots.length);i++){
+      const a=i/Math.max(6,slots.length)*Math.PI*2+t*.03;
+      const rr=6+(i%2)*3;
+      ctx.beginPath();
+      ctx.arc(Math.cos(a)*rr,Math.sin(a)*rr,1.2,0,Math.PI*2);
+      ctx.stroke();
+    }
+
+    ctx.globalAlpha=.9;
+    ctx.fillStyle=C.text;
+    ctx.beginPath();
+    ctx.arc(6,-6,2.5,0,Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(organism.x,organism.y,185,0,Math.PI*2);
+    ctx.strokeStyle=C.brain;
+    ctx.globalAlpha=.075;
+    ctx.setLineDash([5,9]);
+    ctx.stroke();
+    ctx.restore();
+
+    if(currentTarget){
+      ctx.save();
+      ctx.strokeStyle=C.muted;
+      ctx.globalAlpha=.17;
+      ctx.setLineDash([3,8]);
+      ctx.beginPath();
+      ctx.moveTo(organism.x,organism.y);
+      ctx.lineTo(currentTarget.x,currentTarget.y);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  function draw(){
+    drawBackground();
+    drawObjects();
+    drawAmoeba();
+  }
+
+  function frame(ts){
+    if(!last)last=ts;
+    const delta=Math.min(40,ts-last);
+    last=ts;
+    worldTime+=delta*speed;
+
+    if(running&&!paused){
+      accum+=delta*speed;
+      while(accum>=55){
+        logicStep(1);
+        accum-=55;
+      }
+    }
+
+    draw();
+    raf=requestAnimationFrame(frame);
+  }
+
+  function start(){
+    running=true;
+    paused=false;
+    $("#intro").classList.add("hide");
+    $("#pauseBtn").disabled=false;
+    $("#speedSel").disabled=false;
+    $("#pauseBtn").textContent="⏸ Pause";
+    setMajor(
+      "Exploration begins",
+      "The organism moves almost randomly. It does not know what any sensory pattern means yet.",
+      "Experience must create the first associations."
+    );
+  }
+
+  function restart(){
+    running=false;
+    paused=false;
+    $("#intro").classList.remove("hide");
+    $("#pauseBtn").disabled=true;
+    $("#speedSel").disabled=true;
+    $("#pauseBtn").textContent="⏸ Pause";
+    speed=1;
+    $("#speedSel").value="1";
+    resetState();
+  }
+
+  $("#startLife").addEventListener("click",start);
+  $("#pauseBtn").addEventListener("click",()=>{
+    paused=!paused;
+    $("#pauseBtn").textContent=paused?"▶ Resume":"⏸ Pause";
+  });
+  $("#speedSel").addEventListener("change",e=>{
+    speed=clamp(Number(e.target.value)||1,1,4);
+  });
+  $("#restartBtn").addEventListener("click",restart);
+
+  resetState();
+  raf=requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
