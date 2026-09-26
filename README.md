@@ -25,6 +25,7 @@ The research question:
 **What Can an Agent Know About Its Own Learning? Endogenous Self-Modeling, Anchored Metacognition, and the
 Addressability Bottleneck in a Developmental Self-Model Research Program** —
 [`paper/main.pdf`](paper/main.pdf) (LaTeX source, analysis scripts and outputs in [`paper/`](paper)).
+Earlier papers from the same program are in [`paper/prior/`](paper/prior).
 
 The paper reports the whole program, including the failed versions, and labels every claim as demonstrated,
 suggestive, negative, hypothesis or proposal. Beyond the results below, it adds a prospective test showing that
